@@ -70,6 +70,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# jumpstart gems
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
 gem "friendly_id", "~> 5.4"
@@ -86,3 +88,9 @@ gem "sidekiq", "~> 6.2"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
+
+# App-specific gems.
+gem "plugshare", github: "captproton/plugshare", branch: "develop"
+
+
+## PLEASE TIDY UP.  DO NOT LEAVE GEMS BELOW THIS LINE.
