@@ -89,8 +89,13 @@ gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
 
-# App-specific gems.
-gem "plugshare", github: "captproton/plugshare", branch: "develop"
+## App-specific gems.
+# waiting upon approval
+# gem "plugshare", github: "captproton/plugshare", branch: "develop"
+gem "google_places", "~> 2.0"
 
 
 ## PLEASE TIDY UP.  DO NOT LEAVE GEMS BELOW THIS LINE.
+
+
+gem "city-state", "~> 0.1.0"

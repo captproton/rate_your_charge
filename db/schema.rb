@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_05_235120) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_06_201706) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -62,6 +62,47 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_235120) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "location_reviews", force: :cascade do |t|
+    t.string "author_name"
+    t.string "author_url"
+    t.string "profile_url"
+    t.integer "rating"
+    t.string "text"
+    t.integer "time"
+    t.string "type"
+    t.string "online_source"
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_reviews_on_location_id"
+  end
+
+  create_table "locations", force: :cascade do |t|
+    t.string "street_number"
+    t.string "street"
+    t.string "postal_code"
+    t.string "city"
+    t.string "country"
+    t.string "formatted_address"
+    t.string "formatted_phone_number"
+    t.string "international_phone_number"
+    t.float "lat"
+    t.float "lng"
+    t.string "name"
+    t.string "permanently_closed"
+    t.string "photos"
+    t.string "place_id"
+    t.float "rating"
+    t.string "types", default: [], array: true
+    t.string "region"
+    t.string "google_url"
+    t.string "vicinity"
+    t.string "website"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.string "online_source"
+  end
+
   create_table "notifications", force: :cascade do |t|
     t.string "recipient_type", null: false
     t.bigint "recipient_id", null: false
@@ -106,5 +147,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_05_235120) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "location_reviews", "locations"
   add_foreign_key "services", "users"
 end

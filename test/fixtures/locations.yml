@@ -1,0 +1,47 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  street_number,: MyString
+  street,: MyString
+  postal_code,: MyString
+  city,: MyString
+  country,: MyString
+  formatted_address,: MyString
+  formatted_phone_number,: MyString
+  international_phone_number,: MyString
+  lat,: MyString
+  lng,: MyString
+  name,: MyString
+  permanently_closed,: MyString
+  photos,: MyString
+  place_id,: MyString
+  rating,: MyString
+  types,: MyString
+  region,: MyString
+  reviews,: MyString
+  google_url,: MyString
+  vicinity,: MyString
+  website: MyString
+
+two:
+  street_number,: MyString
+  street,: MyString
+  postal_code,: MyString
+  city,: MyString
+  country,: MyString
+  formatted_address,: MyString
+  formatted_phone_number,: MyString
+  international_phone_number,: MyString
+  lat,: MyString
+  lng,: MyString
+  name,: MyString
+  permanently_closed,: MyString
+  photos,: MyString
+  place_id,: MyString
+  rating,: MyString
+  types,: MyString
+  region,: MyString
+  reviews,: MyString
+  google_url,: MyString
+  vicinity,: MyString
+  website: MyString
