@@ -37,14 +37,14 @@ class Location < ApplicationRecord
 
         collection.each do |spot|
             loc_formatted_address_array =   spot.formatted_address.split(", ")
-            street_number               =   spot.street_number.presence || loc_formatted_address_array[0].presence || ""
-            city                        =   spot.city.presence || loc_formatted_address_array.last(3).first.presence || ""
-            # state                       =   spot.state.presence || loc_formatted_address_array[2].split(" ")[0].presence || ""
-            postal_code                 =   spot.postal_code.presence || loc_formatted_address_array.last(2).first.split(/\s/).last.presence || ""
+            formatted_street_number     =   spot.street_number.presence || loc_formatted_address_array[0].presence || ""
+            formatted_city              =   spot.city.presence || loc_formatted_address_array.last(3).first.presence || ""
+            formatted_state             =   loc_formatted_address_array[2].split(" ")[0].presence || ""
+            formatted_postal_code       =   spot.postal_code.presence || loc_formatted_address_array.last(2).first.split(/\s/).last.presence || ""
 
-            loc = Location.where(place_id: spot.place_id).first_or_create(street_number: street_number,
-            postal_code:                    postal_code,
-            city:                           city,
+            loc = Location.where(place_id: spot.place_id).first_or_create(street_number: formatted_street_number,
+            postal_code:                    formatted_postal_code,
+            city:                           formatted_city,
             country:                        spot.country,
             formatted_address:              spot.formatted_address,
             formatted_phone_number:         spot.formatted_phone_number,
@@ -63,9 +63,9 @@ class Location < ApplicationRecord
             online_source:                  "google places"
             )
 
-            loc.update(street_number:       street_number,
-            postal_code:                    postal_code,
-            city:                           city,
+            loc.update(street_number:       formatted_street_number,
+            postal_code:                    formatted_postal_code,
+            city:                           formatted_city,
             country:                        spot.country,
             formatted_address:              spot.formatted_address,
             formatted_phone_number:         spot.formatted_phone_number,
@@ -83,6 +83,7 @@ class Location < ApplicationRecord
             website:                        spot.website,
             online_source:                  "google places")
         end
+
     end
 
     def self.get_all_ev_charing_places(city:, radius: 500, multipage: false)
@@ -102,8 +103,20 @@ class Location < ApplicationRecord
 
         cities.each do |city|
             save_list_of_ev_charging_places(city: city, radius: 500, multipage: false)
+
+            # log that the places in the city were updated in a summary
+            current_city              = city.presence || "FIX: #{city}"
+            current_state             = state_abbr.presence || "FIX: #{city}"
+            current_country           = country_abbr.presence || "FIX: #{city}"
+
+            city_state = CityState.where(city: current_city, state: current_state).first_or_create do |city|
+                        city.country = current_country
+            end
+            city_state.touch
+
             puts "################################"
-            puts "saved #{city}"
+            puts "current_city: #{city}, #{state_abbr} #{current_country}"
+            puts "saved #{current_city}, #{current_state}"
             sleep 0.5
         end
     end
