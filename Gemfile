@@ -51,6 +51,10 @@ gem "bootsnap", require: false
 group :development, :test do
   # See https://guides.rubyonrails.org/debugging_rails_applications.html#debugging-with-the-debug-gem
   gem "debug", platforms: %i[ mri mingw x64_mingw ]
+  gem "rspec-rails"
+  gem "factory_bot_rails"
+  gem "standard", "~> 1.23"
+  gem "ffaker", "~> 2.21"
 end
 
 group :development do
@@ -70,6 +74,8 @@ group :test do
   gem "selenium-webdriver"
   gem "webdrivers"
 end
+
+# jumpstart gems
 gem "cssbundling-rails"
 gem "devise", "~> 4.8", ">= 4.8.0"
 gem "friendly_id", "~> 5.4"
@@ -86,3 +92,13 @@ gem "sidekiq", "~> 6.2"
 gem "sitemap_generator", "~> 6.1"
 gem "whenever", require: false
 gem "responders", github: "heartcombo/responders", branch: "main"
+
+## App-specific gems.
+# waiting upon approval
+# gem "plugshare", github: "captproton/plugshare", branch: "develop"
+gem "google_places", "~> 2.0"
+gem "city-state", "~> 0.1.0"
+
+## PLEASE TIDY UP.  DO NOT LEAVE GEMS BELOW THIS LINE.
+
+gem "pagy", "~> 5.10"

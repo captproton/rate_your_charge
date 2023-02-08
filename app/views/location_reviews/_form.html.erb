@@ -1,0 +1,69 @@
+<%= form_with(model: location_review) do |form| %>
+  <% if location_review.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(location_review.errors.count, "error") %> prohibited this location_review from being saved:</h2>
+
+      <ul>
+      <% location_review.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :author_name, class: 'form-label' %>
+      <%= form.text_field :author_name, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :author_url, class: 'form-label' %>
+      <%= form.text_field :author_url, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :profile_url, class: 'form-label' %>
+      <%= form.text_field :profile_url, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :rating, class: 'form-label' %>
+      <%= form.number_field :rating, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :text, class: 'form-label' %>
+      <%= form.text_field :text, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :time, class: 'form-label' %>
+      <%= form.number_field :time, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :type, class: 'form-label' %>
+      <%= form.text_field :type, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <%= form.label :location_id, class: 'form-label' %>
+      <%= form.text_field :location_id, class: 'form-control' %>
+    </div>
+
+  <div class="mb-3">
+    <% if location_review.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', location_review, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if location_review.persisted? %>
+      <%= link_to "Cancel", location_review, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", location_reviews_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

@@ -1,0 +1,28 @@
+<div class="page-header">
+  <%= link_to location_reviews_path, class: 'btn btn-default' do %>
+    All Location_reviews
+  <% end %>
+  <%= link_to edit_location_review_path(@location_review), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show location_review</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>Author name:</dt>
+  <dd><%= @location_review.author_name %></dd>
+  <dt>Author url:</dt>
+  <dd><%= @location_review.author_url %></dd>
+  <dt>Profile url:</dt>
+  <dd><%= @location_review.profile_url %></dd>
+  <dt>Rating:</dt>
+  <dd><%= @location_review.rating %></dd>
+  <dt>Text:</dt>
+  <dd><%= @location_review.text %></dd>
+  <dt>Time:</dt>
+  <dd><%= @location_review.time %></dd>
+  <dt>Type:</dt>
+  <dd><%= @location_review.type %></dd>
+  <dt>Location:</dt>
+  <dd><%= @location_review.location %></dd>
+</dl>
