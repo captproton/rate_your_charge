@@ -100,3 +100,5 @@ gem "google_places", "~> 2.0"
 gem "city-state", "~> 0.1.0"
 
 ## PLEASE TIDY UP.  DO NOT LEAVE GEMS BELOW THIS LINE.
+
+gem "pagy", "~> 5.10"
