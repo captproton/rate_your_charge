@@ -1,4 +1,34 @@
-<div class="page-header">
+<div class="container">
+  <aside>
+    <p>filter by rating, when open, all filters</p>
+    <p>listing goes here</p>
+    
+  </aside>
+  <main>
+    show item photo and item content here
+    <%= render "header" %>
+    <%= render "action_buttons" %>
+    <%= render "chargers_offered" %>
+    <%= render "place_details" %>
+    <div role="presentation" class="qCHGyb " style="height: 12px;"></div>
+    <%= render "suggest_edit_button" %>
+    <div role="presentation" class="qCHGyb " style="height: 12px;"></div>
+    <div role="presentation" class="qCHGyb ipilje " style="height: 0px;"></div>
+    <%= render "add_missing_information" %>
+    <%= render "add_missing_phone_number" %>
+    <div role="presentation" class="qCHGyb " style="height: 16px;"></div>
+    <div role="presentation" class="qCHGyb ipilje " style="height: 0px;"></div>
+    <%= render "photos" %>
+    <div role="presentation" class="qCHGyb " style="height: 12px;"></div>
+    <%= render "add_photo" %>
+
+  </main>  
+  <div class="map">
+    map that lists area pins go here.
+  </div>
+</div>
+
+<!-- <div class="page-header">
   <%= link_to locations_path, class: 'btn btn-default' do %>
     All Locations
   <% end %>
@@ -49,4 +79,4 @@
   <dd><%= @location.vicinity %></dd>
   <dt>Website:</dt>
   <dd><%= @location.website %></dd>
-</dl>
+</dl> -->

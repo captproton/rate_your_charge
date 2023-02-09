@@ -82,6 +82,16 @@ class Location < ApplicationRecord
             vicinity:                       spot.vicinity,
             website:                        spot.website,
             online_source:                  "google places")
+
+            # add any available photos
+            photo_set = LocationPhoto.get_set_of_google_places_photos(place_id: spot.place_id, max_width: 400, places_api_key: api_key)
+            if Array(photo_set).length > 0
+                photo_set = LocationPhoto.save_set_of_google_places_photos(location_id: loc.id, place_id: spot.place_id, max_width: 400, places_api_key: api_key)
+                puts "********************************"
+                puts "photo_set length: #{photo_set.length}"
+                puts "********************************"
+            end
+                # [loc, photo_set]
         end
 
     end

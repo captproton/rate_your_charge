@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_213113) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_08_234115) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -68,6 +68,18 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_213113) do
     t.index ["slug", "sluggable_type", "scope"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type_and_scope", unique: true
     t.index ["slug", "sluggable_type"], name: "index_friendly_id_slugs_on_slug_and_sluggable_type"
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
+  end
+
+  create_table "location_photos", force: :cascade do |t|
+    t.text "fetched_url"
+    t.integer "height"
+    t.integer "width"
+    t.text "html_attributions"
+    t.text "photo_reference"
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["location_id"], name: "index_location_photos_on_location_id"
   end
 
   create_table "location_reviews", force: :cascade do |t|
@@ -155,6 +167,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_213113) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "location_photos", "locations"
   add_foreign_key "location_reviews", "locations"
   add_foreign_key "services", "users"
 end
