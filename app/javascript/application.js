@@ -13,7 +13,7 @@ require("@rails/ujs").start()
 import './channels/**/*_channel.js'
 import "./controllers"
 
-import * as bootstrap from "bootstrap"
+// import * as bootstrap from "bootstrap"
 
 document.addEventListener("turbo:load", () => {
   var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'))

@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* static home page */
+.hero-image {
+    background-image: url(/assets/hero_image.jpg);
+    height: 64px;
+    background-size: cover;
+    background-position: center;
+    position: relative;
+  }
+  
+  .hero-content {
+    position: relative;
+    padding: 10px;
+  }
+  
+  .hero-title {
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+  }
+  
+  .hero-text {
+    color: white;
+    font-size: 18px;
+  }
+  

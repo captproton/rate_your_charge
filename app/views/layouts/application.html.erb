@@ -1,19 +1,54 @@
 <!DOCTYPE html>
-<html class="h-100">
-  <head>
+<html class="h-full antialiased" lang="<%= I18n.locale %>">
+   <head>
     <%= render 'shared/head' %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%# Replace this with your FontAwesome Pro Kit code %>
+    <script defer src="https://kit.fontawesome.com/0e5ab6a736.js" crossorigin="anonymous"></script>
+
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
   </head>
 
-  <body class="d-flex flex-column h-100">
-    <main class="flex-shrink-0"> 
-      <%= render 'shared/navbar' %>
-      <%= render 'shared/notices' %>
 
-      <div class="container mt-4 mx-auto">
+  <body class="h-full font-sans antialiased font-normal leading-normal bg-gray-50">
+    <div class="main flex flex-col">
+      <%= render partial: "shared/flash" %>
+      <%= render partial: "shared/navbar" %>
+      <ul class="navbar-nav">
+        <li class="nav-item"><%= link_to "What's New", announcements_path, class: "nav-link #{unread_announcements(current_user)}" %></li>
+        <% if user_signed_in? %>
+
+          <li class="nav-item">
+            <%= link_to notifications_path, class: "nav-link" do %>
+              <span><i class="far fa-bell" aria-hidden="true"></i></span>
+            <% end %>
+          </li>
+
+          <li class="nav-item dropdown">
+            <%= link_to "#", id: "navbar-dropdown", class: "nav-link dropdown-toggle", data: { target: "nav-account-dropdown", bs_toggle: "dropdown" }, aria: { haspopup: true, expanded: false } do %>
+              <%= image_tag avatar_path(current_user, size: 40), height: 20, width: 20, class: "rounded" %>
+            <% end %>
+            <div id="nav-account-dropdown" class="dropdown-menu dropdown-menu-end" aria-labelledby="navbar-dropdown">
+              <%= link_to "Settings", edit_user_registration_path, class: "dropdown-item" %>
+              <div class="dropdown-divider"></div>
+              <%= button_to "Logout", destroy_user_session_path, method: :delete, class: "dropdown-item" %>
+            </div>
+          </li>
+
+        <% else %>
+          <li class="nav-item"><%= link_to "Sign Up", new_user_registration_path, class: "nav-link" %></li>
+          <li class="nav-item"><%= link_to "Login", new_user_session_path, class: "nav-link" %></li>
+        <% end %>
+      </ul>
+
+      <div class="px-3 lg:px-0 h-full">
         <%= yield %>
       </div>
-    </main>
+    </div>
 
-    <%= render 'shared/footer' %>
+    <%#= render partial: "shared/footer" unless turbo_native_app? %>
+    <%= render partial: "shared/footer"%>
+
+    <ninja-keys data-controller="command-palette" hideBreadcrumbs></ninja-keys>
   </body>
 </html>

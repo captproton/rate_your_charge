@@ -1,84 +1,112 @@
-
-
-
-<div class="row">
-  <div class="col-sm-6">
-    <h1>Locations</h1>
+  <header class="bg-white p-6 shadow-md">
+    <div class="container mx-auto flex items-center">
+      <img src="logo.png" alt="Logo" class="h-16">
+      <nav class="ml-auto">
+        <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Home</a>
+        <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Reviews</a>
+        <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">About Us</a>
+        <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Contact Us</a>
+      </nav>
+    </div>
+  </header>
+  <main class="py-6">
+    <div class="container mx-auto">
+      <div class="flex items-center">
+        <div class="w-full md:w-3/4">
+          <div id="map" class="bg-gray-300 h-64"></div>
+        </div>
+        <div class="w-full md:w-1/4">
+          <h2 class="text-lg font-medium text-gray-800">Filters</h2>
+          <form class="mt-4">
+            <div class="mb-4">
+              <label class="block text-gray-800 font-medium mb-2">Location</label>
+              <input type="text" class="border border-gray-400 p-2 w-full">
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-800 font-medium mb-2">Charging Speed</label>
+              <select class="border border-gray-400 p-2 w-full">
+                <option>All</option>
+                <option>Slow</option>
+                <option>Fast</option>
+                <option>Superfast</option>
+              </select>
+            </div>
+            <div class="mb-4">
+    <label class="block text-gray-800 font-medium mb-2">Pricing</label>
+    <select class="border border-gray-400 p-2 w-full">
+      <option>All</option>
+      <option>Free</option>
+      <option>Paid</option>
+    </select>
   </div>
-
-  <div class="col-sm-6 text-end">
-  <%#= link_to new_location_path, class: 'btn btn-primary' do %>
-    Add New Location
-  <%# end %>
+  <div class="mb-4">
+    <label class="block text-gray-800 font-medium mb-2">Availability</label>
+    <select class="border border-gray-400 p-2 w-full">
+      <option>All</option>
+      <option>Available</option>
+      <option>Unavailable</option>
+    </select>
   </div>
+  <div class="text-center">
+    <button class="bg-gray-800 text-white py-2 px-4 rounded-full">Filter</button>
+  </div>
+</form>
 </div>
-
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-    
-
-            <th>Street number</th>
-            <!-- <th>Street</th> -->
-            <th>Postal code</th>
-            <th>City</th>
-            <!-- <th>Country</th> -->
-            <th>Formatted address</th>
-            <th>Formatted phone number</th>
-            <th>International phone number</th>
-            <th>Lat</th>
-            <th>Lng</th>
-            <th>Name</th>
-            <!-- <th>Permanently closed</th> -->
-            <!-- <th>Photos</th> -->
-            <th>Place id</th>
-            <th>Rating</th>
-            <th>Types</th>
-            <th>Region</th>
-            <!-- <th>Reviews</th> -->
-            <th>Google url</th>
-            <th>Vicinity</th>
-            <th>Website</th>
-            
-          <th></th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @locations.each do |location| %>
-        <%= content_tag :tr, id: dom_id(location), class: dom_class(location) do %>
-          
-
-                      <td><%= location.street_number %></td>
-                      <!-- <td><%= location.street %></td> -->
-                      <td><%= location.postal_code %></td>
-                      <td><%= location.city %></td>
-                      <!-- <td><%= location.country %></td> -->
-                      <td><%= location.formatted_address %></td>
-                      <td><%= location.formatted_phone_number %></td>
-                      <td><%= location.international_phone_number %></td>
-                      <td><%= location.lat %></td>
-                      <td><%= location.lng %></td>
-                      <td><%= location.name %></td>
-                      <!-- <td><%= location.permanently_closed %></td> -->
-                      <!-- <td><%= location.photos %></td> -->
-                      <td><%= location.place_id %></td>
-                      <td><%= location.rating %></td>
-                      <td><%= location.types %></td>
-                      <td><%= location.region %></td>
-                      <td><%= location.google_url %></td>
-                      <td><%= location.vicinity %></td>
-                      <td><%= location.website %></td>
-          
-          
-            <td><%= link_to 'Show', location %></td>
-          
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
 </div>
+<h2 class="text-lg font-medium text-gray-800 mt-6">Charge Stations</h2>
+<table class="w-full mt-4">
+<thead>
+<tr class="bg-gray-200">
+  <th class="px-4 py-2 text-left text-gray-800 font-medium">Location</th>
+  <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
+  <th class="px-4 py-2 text-left text-gray-800 font-medium">Overview</th>
+</tr>
+</thead>
+<tbody>
+<tr class="bg-white">
+  <td class="border px-4 py-2 text-left">Seattle</td>
+  <td class="border px-4 py-2 text-left">4.5/5</td>
+  <td class="border px-4 py-2 text-left">Fast charging and convenient location</td>
+</tr>
+<tr class="bg-gray-100">
+  <td class="border px-4 py-2 text-left">Los Angeles</td>
+  <td class="border px-4 py-2 text-left">3.5/5</td>
+  <td class="border px-4 py-2 text-left">A bit slow, but reasonable pricing</td>
+</tr>
+</tbody>
+</table>
+<h2 class="text-lg font-medium text-gray-800 mt-6">User Reviews</h2>
 
-<%== pagy_bootstrap_nav(@pagy) %>
+
+<table class="w-full mt-4">
+<thead>
+<tr class="bg-gray-200">
+  <th class="px-4 py-2 text-left text-gray-800 font-medium">User</th>
+  <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
+  <th class="px-4 py-2 text-left text-gray-800 font-medium">Review</th>
+  <th class="px-4 py
+<!--  -->
+<thead>
+    <tr class="bg-gray-200">
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">User</th>
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">Review</th>
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">Date</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="bg-white">
+      <td class="border px-4 py-2 text-left">Jane Doe</td>
+      <td class="border px-4 py-2 text-left">4/5</td>
+      <td class="border px-4 py-2 text-left">Easy to use and fast charging</td>
+      <td class="border px-4 py-2 text-left">Jan 1, 2023</td>
+    </tr>
+    <tr class="bg-gray-100">
+      <td class="border px-4 py-2 text-left">John Doe</td>
+      <td class="border px-4 py-2 text-left">5/5</td>
+      <td class="border px-4 py-2 text-left">Excellent service and friendly staff</td>
+      <td class="border px-4 py-2 text-left">Feb 1, 2023</td>
+    </tr>
+  </tbody>
+</table>
+</div>

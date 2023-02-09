@@ -1,0 +1,84 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Locations</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%#= link_to new_location_path, class: 'btn btn-primary' do %>
+    Add New Location
+  <%# end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>Street number</th>
+            <!-- <th>Street</th> -->
+            <th>Postal code</th>
+            <th>City</th>
+            <!-- <th>Country</th> -->
+            <th>Formatted address</th>
+            <th>Formatted phone number</th>
+            <th>International phone number</th>
+            <th>Lat</th>
+            <th>Lng</th>
+            <th>Name</th>
+            <!-- <th>Permanently closed</th> -->
+            <!-- <th>Photos</th> -->
+            <th>Place id</th>
+            <th>Rating</th>
+            <th>Types</th>
+            <th>Region</th>
+            <!-- <th>Reviews</th> -->
+            <th>Google url</th>
+            <th>Vicinity</th>
+            <th>Website</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @locations.each do |location| %>
+        <%= content_tag :tr, id: dom_id(location), class: dom_class(location) do %>
+          
+
+                      <td><%= location.street_number %></td>
+                      <!-- <td><%= location.street %></td> -->
+                      <td><%= location.postal_code %></td>
+                      <td><%= location.city %></td>
+                      <!-- <td><%= location.country %></td> -->
+                      <td><%= location.formatted_address %></td>
+                      <td><%= location.formatted_phone_number %></td>
+                      <td><%= location.international_phone_number %></td>
+                      <td><%= location.lat %></td>
+                      <td><%= location.lng %></td>
+                      <td><%= location.name %></td>
+                      <!-- <td><%= location.permanently_closed %></td> -->
+                      <!-- <td><%= location.photos %></td> -->
+                      <td><%= location.place_id %></td>
+                      <td><%= location.rating %></td>
+                      <td><%= location.types %></td>
+                      <td><%= location.region %></td>
+                      <td><%= location.google_url %></td>
+                      <td><%= location.vicinity %></td>
+                      <td><%= location.website %></td>
+          
+          
+            <td><%= link_to 'Show', location %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
+<%== pagy_bootstrap_nav(@pagy) %>

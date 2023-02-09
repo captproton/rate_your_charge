@@ -1,10 +1,16 @@
+
+<div class="relative bg-cover bg-center h-64" style="background-image: url(/assets/hero_image.jpg);">
+
+    <div class="relative p-10">
+    <h1 class="text-white text-3xl font-bold">Rate Your Charge</h1>
+    <p class="text-white text-xl">
+      <%= link_to "Tell us your experience", locations_path %>
+
+    </p>
+  </div>
+</div>
+
 <div class="py-32 max-w-2xl m-auto text-center flex flex-col items-center justify-center">
-  <h1 class="mb-2">Welcome to Platform Pro</h1>
-  <p class="mb-6 text-gray-700 leading-normal text-xl">
-    Platform Pro is the simple, fast WordPress alternative for affiliate marketers, bloggers and SEO that gets more organic traffic.
-  </p>
-  <p>    Get a website in seconds that simply works. So you can focus on your business, not your website.
-  </p>
 
   <% if Rails.env.development? %>
     <div class="flex flex-col items-center md:flex-row">

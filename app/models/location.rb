@@ -3,6 +3,8 @@ class Location < ApplicationRecord
     validates :name, :formatted_address, :lat, :lng, presence: true
     # validates :formatted_address, uniqueness: true
     validates :lat, uniqueness: {scope: :lng}
+
+    has_many :location_reviews
     # https://github.com/qpowell/google_places/blob/master/spec/google_places/spot_spec.rb
     def self.import_spot(spot_id)
         import_with_google_places(spot_id)

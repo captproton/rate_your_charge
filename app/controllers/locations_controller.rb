@@ -8,8 +8,9 @@ class LocationsController < ApplicationController
   end
 
   # GET /locations/1 or /locations/1.json
-  # def show
-  # end
+  def show
+    @review = @location.location_reviews.new
+  end
 
   # GET /locations/new
   # def new
@@ -66,6 +67,26 @@ class LocationsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_params
-      params.require(:location).permit(:street_number, :street, :postal_code, :city, :country, :formatted_address, :formatted_phone_number, :international_phone_number, :lat, :lng, :name, :permanently_closed, :photos, :place_id, :rating, :types, :region, :reviews, :google_url, :vicinity, :website)
+      params.require(:location).permit(:street_number, 
+                                        :street, 
+                                        :postal_code, 
+                                        :city, 
+                                        :country, 
+                                        :formatted_address, 
+                                        :formatted_phone_number, 
+                                        :international_phone_number, 
+                                        :lat, 
+                                        :lng, 
+                                        :name, 
+                                        :permanently_closed, 
+                                        :photos, 
+                                        :place_id, 
+                                        :rating, 
+                                        :types, 
+                                        :region, 
+                                        :reviews, 
+                                        :google_url, 
+                                        :vicinity, 
+                                        :website)
     end
 end

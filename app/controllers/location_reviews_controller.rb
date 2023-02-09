@@ -21,11 +21,12 @@ class LocationReviewsController < ApplicationController
 
   # POST /location_reviews or /location_reviews.json
   def create
-    @location_review = LocationReview.new(location_review_params)
+    @location = Location.find(params[:location_id]) 
+    @location_review = @location.location_reviews.build(location_review_params)
 
     respond_to do |format|
       if @location_review.save
-        format.html { redirect_to location_review_url(@location_review), notice: "Location review was successfully created." }
+        format.html { redirect_to location_url(@location), notice: "Thanks for your help!  Location review was successfully created." }
         format.json { render :show, status: :created, location: @location_review }
       else
         format.html { render :new, status: :unprocessable_entity }
@@ -65,6 +66,13 @@ class LocationReviewsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def location_review_params
-      params.require(:location_review).permit(:author_name, :author_url, :profile_url, :rating, :text, :time, :type, :location_id)
+      params.require(:location_review).permit(:author_name, 
+                                              :author_url, 
+                                              :profile_url, 
+                                              :rating, 
+                                              :text, 
+                                              :time, 
+                                              :type, 
+                                              :location_id)
     end
 end
