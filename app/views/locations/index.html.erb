@@ -56,31 +56,13 @@
           <!-- end form -->
 </div>
 </div>
-<h2 class="text-lg font-medium text-gray-800 mt-6">Charge Stations</h2>
-<table class="w-full mt-4">
-<thead>
-<tr class="bg-gray-200">
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Location</th>
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Overview</th>
-</tr>
-</thead>
-<tbody>
-  <% @locations.each do |location| %>
-    <tr class="bg-white">
-      <td class="border px-4 py-2 text-left"><%= location.name %></td>
-      <td class="border px-4 py-2 text-left"><%= location.formatted_address %></td>
-      <td class="border px-4 py-2 text-left"><%= location.rating || "0" %></td>
-    </tr>
-  <% end %>
+<h2 class="text-lg font-medium text-gray-800 mt-6">Charge Stations (<%= params[:search] %>)</h2>
+<%if @locations.length > 0 %>
+<%= render partial: "results" %>
 
-<tr class="bg-gray-100">
-  <td class="border px-4 py-2 text-left">Los Angeles</td>
-  <td class="border px-4 py-2 text-left">3.5/5</td>
-  <td class="border px-4 py-2 text-left">A bit slow, but reasonable pricing</td>
-</tr>
-</tbody>
-</table>
+<% else %>
+  <h2>No results found</h2>
+<% end %>
 <h2 class="text-lg font-medium text-gray-800 mt-6">User Reviews</h2>
 
 

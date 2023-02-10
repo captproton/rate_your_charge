@@ -11,7 +11,7 @@ class LocationsController < ApplicationController
       @locations = Location.first(12)
     end
 
-    @pagy, @locations = pagy(Location.all)
+    # @pagy, @locations = pagy(Location.all)
   end
 
   # GET /locations/1 or /locations/1.json

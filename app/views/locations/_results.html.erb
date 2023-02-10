@@ -1,0 +1,27 @@
+<table class="w-full mt-4">
+    <thead>
+    <tr class="bg-gray-200">
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">Name</th>
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">Address</th>
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">rating</th>
+      <th class="px-4 py-2 text-left text-gray-800 font-medium">Overview</th>
+    </tr>
+    </thead>
+    <tbody>
+      <% @locations.each do |location| %>
+        <tr class="bg-white">
+          <td class="border px-4 py-2 text-left"><%= link_to location.name, location, class: "text-blue-500"  %></td>
+          <td class="border px-4 py-2 text-left"><%= location.formatted_address %></td>
+          <td class="border px-4 py-2 text-left"><%= location.rating || "0" %></td>
+          <td class="border px-4 py-2 text-left">Lorem ipsum dolor sit amet consectetur adipisicing elit. Tenetur odit, corporis fugit porro inventore quaerat? Quis mollitia aliquid vitae placeat assumenda consequuntur vel, id quasi, quae expedita esse. Minus, assumenda.</td>
+        </tr>
+      <% end %>
+    
+    <!-- <tr class="bg-gray-100">
+      <td class="border px-4 py-2 text-left">Los Angeles</td>
+      <td class="border px-4 py-2 text-left">3.5/5</td>
+      <td class="border px-4 py-2 text-left">A bit slow, but reasonable pricing</td>
+    </tr> -->
+    </tbody>
+    </table>
+    

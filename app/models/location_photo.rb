@@ -1,7 +1,7 @@
 class LocationPhoto < ApplicationRecord
   belongs_to :location
-
-  validates :fetched_url, :photo_reference, :lat, :lng, presence: true
+  # FIX: validates presence
+  # validates :fetched_url, :photo_reference, :lat, :lng, presence: true
   validates :fetched_url, uniqueness: true
 
   def self.get_set_of_google_places_photos(place_id:, max_width: 400, places_api_key:)
