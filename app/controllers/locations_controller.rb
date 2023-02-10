@@ -4,6 +4,13 @@ class LocationsController < ApplicationController
   # GET /locations or /locations.json
   def index
     # @locations = Location.all
+    # search tracking
+    if params[:search].present?
+      @locations = Location.where("city LIKE ?", "%#{params[:search]}%")
+    else
+      @locations = Location.first(12)
+    end
+
     @pagy, @locations = pagy(Location.all)
   end
 
