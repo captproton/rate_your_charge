@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_234115) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_002718) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -106,8 +106,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_234115) do
     t.string "formatted_address"
     t.string "formatted_phone_number"
     t.string "international_phone_number"
-    t.float "lat"
-    t.float "lng"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
     t.string "name"
     t.string "permanently_closed"
     t.string "photos"
