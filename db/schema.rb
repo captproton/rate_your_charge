@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_08_234115) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_10_215824) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -70,6 +70,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_234115) do
     t.index ["sluggable_type", "sluggable_id"], name: "index_friendly_id_slugs_on_sluggable_type_and_sluggable_id"
   end
 
+  create_table "listings", force: :cascade do |t|
+    t.string "title"
+    t.string "address_line1"
+    t.string "address_line2"
+    t.string "city"
+    t.string "state"
+    t.string "postal_code"
+    t.string "country"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "location_photos", force: :cascade do |t|
     t.text "fetched_url"
     t.integer "height"
@@ -106,8 +120,8 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_08_234115) do
     t.string "formatted_address"
     t.string "formatted_phone_number"
     t.string "international_phone_number"
-    t.float "lat"
-    t.float "lng"
+    t.decimal "lat", precision: 10, scale: 6
+    t.decimal "lng", precision: 10, scale: 6
     t.string "name"
     t.string "permanently_closed"
     t.string "photos"

@@ -17,10 +17,12 @@
         </div>
         <div class="w-full md:w-1/4">
           <h2 class="text-lg font-medium text-gray-800">Filters</h2>
-          <form class="mt-4">
+          <!-- start form -->
+          <%= form_tag locations_path, method: :get do %>
             <div class="mb-4">
               <label class="block text-gray-800 font-medium mb-2">Location</label>
-              <input type="text" class="border border-gray-400 p-2 w-full">
+              <!-- <input type="text" class="border border-gray-400 p-2 w-full"> -->
+              <%= text_field_tag :search, params[:search], class: "border border-gray-400 p-2 w-full" %>
             </div>
             <div class="mb-4">
               <label class="block text-gray-800 font-medium mb-2">Charging Speed</label>
@@ -32,49 +34,35 @@
               </select>
             </div>
             <div class="mb-4">
-    <label class="block text-gray-800 font-medium mb-2">Pricing</label>
-    <select class="border border-gray-400 p-2 w-full">
-      <option>All</option>
-      <option>Free</option>
-      <option>Paid</option>
-    </select>
-  </div>
-  <div class="mb-4">
-    <label class="block text-gray-800 font-medium mb-2">Availability</label>
-    <select class="border border-gray-400 p-2 w-full">
-      <option>All</option>
-      <option>Available</option>
-      <option>Unavailable</option>
-    </select>
-  </div>
-  <div class="text-center">
-    <button class="bg-gray-800 text-white py-2 px-4 rounded-full">Filter</button>
-  </div>
-</form>
+              <label class="block text-gray-800 font-medium mb-2">Pricing</label>
+              <select class="border border-gray-400 p-2 w-full">
+                <option>All</option>
+                <option>Free</option>
+                <option>Paid</option>
+              </select>
+            </div>
+            <div class="mb-4">
+              <label class="block text-gray-800 font-medium mb-2">Availability</label>
+              <select class="border border-gray-400 p-2 w-full">
+                <option>All</option>
+                <option>Available</option>
+                <option>Unavailable</option>
+              </select>
+            </div>
+            <div class="text-center">
+              <button class="bg-gray-800 text-white py-2 px-4 rounded-full">Filter</button>
+            </div>
+          <% end %>
+          <!-- end form -->
 </div>
 </div>
-<h2 class="text-lg font-medium text-gray-800 mt-6">Charge Stations</h2>
-<table class="w-full mt-4">
-<thead>
-<tr class="bg-gray-200">
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Location</th>
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Overview</th>
-</tr>
-</thead>
-<tbody>
-<tr class="bg-white">
-  <td class="border px-4 py-2 text-left">Seattle</td>
-  <td class="border px-4 py-2 text-left">4.5/5</td>
-  <td class="border px-4 py-2 text-left">Fast charging and convenient location</td>
-</tr>
-<tr class="bg-gray-100">
-  <td class="border px-4 py-2 text-left">Los Angeles</td>
-  <td class="border px-4 py-2 text-left">3.5/5</td>
-  <td class="border px-4 py-2 text-left">A bit slow, but reasonable pricing</td>
-</tr>
-</tbody>
-</table>
+<h2 class="text-lg font-medium text-gray-800 mt-6">Charge Stations (<%= params[:search] %>)</h2>
+<%if @locations.length > 0 %>
+<%= render partial: "results" %>
+
+<% else %>
+  <h2>No results found</h2>
+<% end %>
 <h2 class="text-lg font-medium text-gray-800 mt-6">User Reviews</h2>
 
 

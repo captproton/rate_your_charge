@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :listings
   resources :location_reviews
   resources :locations
   draw :madmin
