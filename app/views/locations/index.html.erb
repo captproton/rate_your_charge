@@ -10,91 +10,20 @@
     </div>
   </header>
   <main class="py-6">
-    <div class="container mx-auto">
-      <div class="flex items-center">
-        <div class="w-full md:w-3/4">
-          <div id="map" class="bg-gray-300 h-64"></div>
-        </div>
-        <div class="w-full md:w-1/4">
-          <h2 class="text-lg font-medium text-gray-800">Filters</h2>
-          <!-- start form -->
-          <%= form_tag locations_path, method: :get do %>
-            <div class="mb-4">
-              <label class="block text-gray-800 font-medium mb-2">Location</label>
-              <!-- <input type="text" class="border border-gray-400 p-2 w-full"> -->
-              <%= text_field_tag :search, params[:search], class: "border border-gray-400 p-2 w-full" %>
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-800 font-medium mb-2">Charging Speed</label>
-              <select class="border border-gray-400 p-2 w-full">
-                <option>All</option>
-                <option>Slow</option>
-                <option>Fast</option>
-                <option>Superfast</option>
-              </select>
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-800 font-medium mb-2">Pricing</label>
-              <select class="border border-gray-400 p-2 w-full">
-                <option>All</option>
-                <option>Free</option>
-                <option>Paid</option>
-              </select>
-            </div>
-            <div class="mb-4">
-              <label class="block text-gray-800 font-medium mb-2">Availability</label>
-              <select class="border border-gray-400 p-2 w-full">
-                <option>All</option>
-                <option>Available</option>
-                <option>Unavailable</option>
-              </select>
-            </div>
-            <div class="text-center">
-              <button class="bg-gray-800 text-white py-2 px-4 rounded-full">Filter</button>
-            </div>
-          <% end %>
-          <!-- end form -->
-</div>
-</div>
-<h2 class="text-lg font-medium text-gray-800 mt-6">Charge Stations (<%= params[:search] %>)</h2>
-<%if @locations.length > 0 %>
-<%= render partial: "results" %>
+<div class="new-review">
+  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
+  
+  <!--  -->
+  <%if @locations.length > 0 %>
+<%= render partial: "results2" %>
 
 <% else %>
   <h2>No results found</h2>
 <% end %>
-<h2 class="text-lg font-medium text-gray-800 mt-6">User Reviews</h2>
 
+                        
 
-<table class="w-full mt-4">
-<thead>
-<tr class="bg-gray-200">
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">User</th>
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
-  <th class="px-4 py-2 text-left text-gray-800 font-medium">Review</th>
-  <th class="px-4 py
-<!--  -->
-<thead>
-    <tr class="bg-gray-200">
-      <th class="px-4 py-2 text-left text-gray-800 font-medium">User</th>
-      <th class="px-4 py-2 text-left text-gray-800 font-medium">Rating</th>
-      <th class="px-4 py-2 text-left text-gray-800 font-medium">Review</th>
-      <th class="px-4 py-2 text-left text-gray-800 font-medium">Date</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr class="bg-white">
-      <td class="border px-4 py-2 text-left">Jane Doe</td>
-      <td class="border px-4 py-2 text-left">4/5</td>
-      <td class="border px-4 py-2 text-left">Easy to use and fast charging</td>
-      <td class="border px-4 py-2 text-left">Jan 1, 2023</td>
-    </tr>
-    <tr class="bg-gray-100">
-      <td class="border px-4 py-2 text-left">John Doe</td>
-      <td class="border px-4 py-2 text-left">5/5</td>
-      <td class="border px-4 py-2 text-left">Excellent service and friendly staff</td>
-      <td class="border px-4 py-2 text-left">Feb 1, 2023</td>
-    </tr>
-  </tbody>
-</table>
+</div>
 </div>

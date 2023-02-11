@@ -1,0 +1,37 @@
+<div class="container mx-auto">
+    <h1 class="text-2xl font-bold mb-4">EV Charge Station Locations</h1>
+    <div class="flex mb-4">
+        <%= form_tag locations_path, method: :get do %>
+
+      <input type="text" class="flex-1 border border-gray-400 p-2 mr-2" placeholder="Search for a location">
+      <button class="bg-blue-500 text-white p-2">Search</button>
+      <% end %>
+
+    </div>
+    <div class="flex">
+        <div class="w-1/2 p-4 overflow-auto" style="height: 500px;">
+        <ul class="list-none">
+            <% @locations.each do |location| %>
+                <li class="border border-gray-400 mb-4 p-4 rounded-lg shadow-lg">
+                    <h3 class="font-bold mb-2"><%= link_to location.name, location, class: "text-blue-500"  %></h3>
+                    <p class="mb-2"><%= location.formatted_address %></p>
+                    <!-- <p class="mb-2">City: Anytown</p>
+                    <p class="mb-2">State: CA</p> -->
+                    <div class="flex items-center">
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <i class="fas fa-star text-yellow-500 mr-1"></i>
+                    <i class="fas fa-star text-gray-500"></i>
+                    </div>
+              </li>
+            <% end %>
+    
+    
+        </ul>
+      </div>
+      <div class="w-1/2 p-4">
+        <div id="map" class="bg-gray-300 h-64" style="width: 100%;"></div>
+      </div>
+    </div>
+  </div>
