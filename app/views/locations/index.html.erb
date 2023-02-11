@@ -11,13 +11,11 @@
   </header>
   <main class="py-6">
 <div class="new-review">
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
   
   <!--  -->
   <%if @locations.length > 0 %>
-<%= render partial: "results2" %>
+<%= render partial: "results" %>
 
 <% else %>
   <h2>No results found</h2>
