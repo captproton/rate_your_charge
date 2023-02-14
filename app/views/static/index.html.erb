@@ -1,18 +1,19 @@
 
-<div class="relative bg-cover bg-center h-64" style="background-image: url(/assets/hero_image.jpg);">
+<div class="relative bg-cover bg-center h-96" style="background-image: url(/assets/hero_image.jpg);">
 
     <div class="relative p-10">
     <h1 class="text-white text-3xl font-bold">Rate Your Charge</h1>
     <p class="text-white text-xl">
-      <%= link_to "Tell us your experience", locations_path %>
+      <%= link_to "Share your experience", locations_path %>
 
     </p>
   </div>
 </div>
 
 <div class="py-32 max-w-2xl m-auto text-center flex flex-col items-center justify-center">
-
-  <% if Rails.env.development? %>
+  <h1 class="text-3xl font-bold">
+    <%= link_to "Find Good Chargers Near You", locations_path, class: "underline text-blue-500" %>  <% if Rails.env.development? %>
+  </h1>
     <div class="flex flex-col items-center md:flex-row">
       <div class="w-full md:w-auto">
         <%#= link_to "Configure Jumpstart", jumpstart_path, data: { turbo: false }, class: "btn btn-primary lg:mr-4 mr-0 lg:mb-0 mb-4" %>

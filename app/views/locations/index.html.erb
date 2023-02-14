@@ -1,8 +1,11 @@
   <header class="bg-white p-6 shadow-md">
     <div class="container mx-auto flex items-center">
-      <img src="logo.png" alt="Logo" class="h-16">
+      <%= link_to root_path  do %>
+      <img src="logo.png" alt="Rate Your Charge Logo" class="h-16">
+
+      <% end %>
       <nav class="ml-auto">
-        <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Home</a>
+        <a href="<%= root_path %>" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Home</a>
         <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Reviews</a>
         <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">About Us</a>
         <a href="#" class="px-4 py-2 font-medium text-gray-800 hover:bg-gray-200">Contact Us</a>
@@ -11,13 +14,22 @@
   </header>
   <main class="py-6">
 <div class="new-review">
-  <link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
 
-  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
   
   <!--  -->
   <%if @locations.length > 0 %>
-<%= render partial: "results2" %>
+  <div class="container mx-auto">
+    <h1 class="text-2xl font-bold mb-4">EV Charge Station Locations</h1>
+    <div class="flex mb-4">
+        <%= form_tag locations_path, method: :get do %>
+          <%= text_field_tag :search, params[:search], class: "flex-1 border border-gray-400 p-2 mr-2" %>
+      <!-- <input type="text" class="flex-1 border border-gray-400 p-2 mr-2" placeholder="Search for a location"> -->
+      <button class="bg-blue-500 text-white p-2">Search</button>
+      <% end %>
+
+    </div>
+
+<%= render partial: "results" %>
 
 <% else %>
   <h2>No results found</h2>

@@ -1,0 +1,17 @@
+    <div class="flex" data-controller="listing-map" data-action="map-loaded@window->address#initGoogle" >
+      <div class="w-1/2 p-4 overflow-auto" style="height: 500px;">
+        <ul class="list-none">
+            <% @locations.each do |location| %>
+                <li  data-lat="<%= location.lat %>" data-title="<%= location.name %>" data-lng="<%= location.lng %>" class="border border-gray-400 mb-4 p-4 rounded-lg shadow-lg">
+                    <%= render partial: 'location_summary', locals: { location: location } %>
+                  
+              </li>
+            <% end %>
+    
+    
+        </ul>
+      </div>
+      <div class="w-1/2 p-4">
+        <div id="map" class="bg-gray-300 h-64" style="width: 100%;"></div>
+      </div>
+    </div>
