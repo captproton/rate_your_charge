@@ -13,45 +13,13 @@
   </div>
 </div>
 
-<div class="table-responsive">
-  <table class="table table-striped table-bordered table-hover">
-    <thead>
-      <tr>
-    
+<!--  -->
+<div class="container mx-auto">
+  <h1 class="text-2xl font-bold mb-4">EV Charge Station Locations</h1>
+  <div class="flex mb-4">
+    <input type="text" class="flex-1 border border-gray-400 p-2 mr-2" placeholder="Search for a location">
+    <button class="bg-blue-500 text-white p-2">Search</button>
+  </div>
 
-            <th>Address line1</th>
-            <th>Address line2</th>
-            <th>City</th>
-            <th>State</th>
-            <th>Postal code</th>
-            <th>Country</th>
-            <th>Lat</th>
-            <th>Lng</th>
-            
-          <th></th>
-        
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @listings.each do |listing| %>
-        <%= content_tag :tr, id: dom_id(listing), class: dom_class(listing) do %>
-          
-
-                      <td><%= listing.address_line1 %></td>
-                      <td><%= listing.address_line2 %></td>
-                      <td><%= listing.city %></td>
-                      <td><%= listing.state %></td>
-                      <td><%= listing.postal_code %></td>
-                      <td><%= listing.country %></td>
-                      <td><%= listing.lat %></td>
-                      <td><%= listing.lng %></td>
-          
-          
-            <td><%= link_to 'Show', listing %></td>
-          
-        <% end %>
-      <% end %>
-    </tbody>
-  </table>
+  <%= render "results" %>
 </div>
