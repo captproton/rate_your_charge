@@ -1,18 +1,40 @@
+<link rel="stylesheet" href="https://cdn.tailwindcss.com/css/tailwind.min.css">
 
-<div class="relative bg-cover bg-center h-96" style="background-image: url(/assets/hero_image.jpg);">
+<div class="bg-gray-100">
+  <!-- Hero section with background image -->
+  <section class="hero h-screen bg-cover"
+           style="background-image: url('/assets/ev_station_for_landing01')">
+    <div class="max-w-screen-xl mx-auto px-4 py-24 flex flex-col items-end justify-end">      
+      <h1 class="text-4xl font-bold text-white mb-6" style="color: #54a191">Rate Your Charge</h1>
+      <p class="text-lg text-white mb-4" style="color: #54a191">Coming soon</p>
+      <form class="flex justify-center">
+        <input type="email" placeholder="Enter your email" class="py-2 px-4 border border-gray-400 rounded-l-md focus:outline-none focus:ring focus:ring-blue-400">
+        <button type="submit" class=" text-white py-2 px-4 rounded-r-md focus:outline-none focus:ring focus:ring-blue-400" style="color: #54a191;background-color: #36ffc9">Notify me</button>
+      </form>
+    </div>
+  </section>
+  <!-- About section -->
+  <section class="bg-white py-12">
+    <div class="max-w-screen-xl mx-auto px-4">
+      <h2 class="text-3xl font-bold text-gray-800 mb-6">About Rate Your Charge</h2>
+      <p class="text-gray-600 leading-relaxed mb-12"><em>Rate Your Charge</em> is a platform for finding and rating electric vehicle charging stations. Our mission is to make it easy for EV drivers to find the best charging options and share their experiences with others.</p>
+<!--       <a href="#" class="bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded-md focus:outline-none focus:ring focus:ring-blue-400">Learn more</a> -->
+    </div>
+  </section>
 
-    <div class="relative p-10">
-    <h1 class="text-white text-3xl font-bold">Rate Your Charge</h1>
-    <p class="text-white text-xl">
-      <%= link_to "Share your experience", locations_path %>
-
-    </p>
-  </div>
+  <!-- Footer section -->
+  <footer class="bg-gray-800 py-6">
+    <div class="max-w-screen-xl mx-auto px-4 text-white text-center">
+      <p>Rate Your Charge &copy; 2023</p>
+    </div>
+  </footer>
 </div>
 
 <div class="py-32 max-w-2xl m-auto text-center flex flex-col items-center justify-center">
+  <% if Rails.env.development? %>
+
   <h1 class="text-3xl font-bold">
-    <%= link_to "Find Good Chargers Near You", locations_path, class: "underline text-blue-500" %>  <% if Rails.env.development? %>
+    <%= link_to "Find Good Chargers Near You", locations_path, class: "underline text-blue-500" %>  
   </h1>
     <div class="flex flex-col items-center md:flex-row">
       <div class="w-full md:w-auto">
