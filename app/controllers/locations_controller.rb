@@ -6,7 +6,28 @@ class LocationsController < ApplicationController
     # @locations = Location.all
     # search tracking
     if params[:search].present?
-      @locations = Location.where("city LIKE ?", "%#{params[:search]}%")
+      # parse city from state
+      search_term = "#{params[:search]}"
+# 
+      city = nil
+      state = nil
+
+      match = search_term.match(/\b([A-Z]{2})\b/)
+      if match
+        state = match[1]
+        search_term = search_term.gsub(/\b#{state}\b/, '').strip
+      end
+
+      comma_index = search_term.rindex(",")
+      if comma_index
+        city = search_term[0...comma_index].strip
+        state ||= search_term[comma_index+1..-1].strip
+      else
+        city = search_term.strip
+      end
+
+# 
+      @locations = Location.where(city: city, state: state)
     else
       @locations = Location.first(12)
     end

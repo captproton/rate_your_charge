@@ -73,6 +73,7 @@ group :test do
   gem "capybara"
   gem "selenium-webdriver"
   gem "webdrivers"
+  gem "shoulda-matchers", "~> 5.3"
 end
 
 # jumpstart gems
@@ -104,3 +105,4 @@ gem "city-state", "~> 0.1.0"
 gem "pagy", "~> 5.10"
 
 gem "inline_svg", "~> 1.8"
+
