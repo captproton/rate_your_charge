@@ -28,8 +28,10 @@ class LocationsController < ApplicationController
 
 # 
       @locations = Location.where(city: city, state: state)
+      @location_pins = @locations.map{|f| {lat: f.lat, lng: f.lng}}
     else
       @locations = Location.first(12)
+      @location_pins = @locations.map{|f| {lat: f.lat, lng: f.lng}}
     end
 
     # @pagy, @locations = pagy(Location.all)

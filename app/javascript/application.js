@@ -28,25 +28,5 @@ import "./controllers"
 // })
 
 
-// window.initMap = () => {
-//   console.log("map initialized");
-// }
-// @excid3's function (outdated per chatGPT)
-// window.initMap = function(...args) {
-//   const event = document.createEvent("Events")
-//   event.initEvent("google-maps-callback", true, true)
-//   event.args = args
-//   window.dispatchEvent(event)
-// }
-
-// still works, but function below it has more modern syntax, per chatGPT
-// window.initMap = () => {
-//   const event = new Event("MapLoaded")
-//   event.initEvent("map-loaded", true, true);
-//   window.dispatchEvent(event)
-// }
-
-window.initMap = () => {
-  console.log(`map initialized`)
-  window.dispatchEvent(new Event("map-loaded"));
-};
+// start mapkick with mapbox
+import "mapkick/bundle"

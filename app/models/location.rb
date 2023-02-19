@@ -1,156 +1,80 @@
 class Location < ApplicationRecord
-    require 'google_places'
-    validates :name, :formatted_address, :lat, :lng, presence: true
+    # validates :name, :formatted_address, :lat, :lng, presence: true
     # validates :formatted_address, uniqueness: true
-    validates :lat, uniqueness: {scope: :lng}
+    # validates :lat, uniqueness: {scope: :lng}
 
     has_many :location_reviews
-    # https://github.com/qpowell/google_places/blob/master/spec/google_places/spot_spec.rb
-    def self.import_spot(spot_id)
-        import_with_google_places(spot_id)
-    end
+    has_one  :nrel_location
 
-    def self.import_with_google_places(spot_id)
-        @spot = google_places_client.spot(spot_id.to_s)
-        Location.create!(street_number:@spot.street_number,
-            postal_code:                @spot.postal_code,
-            city:                       @spot.city,
-            country:                    @spot.country,
-            formatted_address:          @spot.formatted_address,
-            formatted_phone_number:     @spot.formatted_phone_number,
-            international_phone_number: @spot.international_phone_number,
-            lat:                        @spot.lat,
-            lng:                        @spot.lng,
-            name:                       @spot.name,
-            permanently_closed:         @spot.permanently_closed,
-            place_id:                   @spot.place_id,
-            rating:                     @spot.rating,
-            types:                      @spot.types,
-            region:                     @spot.region,
-            google_url:                 @spot.url,
-            vicinity:                   @spot.vicinity,
-            website:                    @spot.website
-
-        )
-    end
-
-    def self.save_list_of_ev_charging_places(city:, state_abbr:, radius: 500, multipage: false)
-        collection = get_all_ev_charing_places(city: city, state_abbr: state_abbr, radius: radius, multipage: multipage)
-
-        collection.each do |spot|
-            loc_formatted_address_array =   spot.formatted_address.split(", ")
-            # parsing from right to left, since l2r is brittle
-            formatted_street_number     =   spot.street_number.presence || loc_formatted_address_array.reverse[3].presence || ""
-            formatted_city              =   spot.city.presence || loc_formatted_address_array.reverse[2].presence || ""
-            formatted_state             =   loc_formatted_address_array.reverse[1].split(/\s/).first.presence || ""
-            formatted_postal_code       =   spot.postal_code.presence || loc_formatted_address_array.reverse[1].split(/\s/).last.presence || ""
-
-            loc = Location.where(place_id: spot.place_id).first_or_create(street_number: formatted_street_number,
-            postal_code:                    formatted_postal_code,
-            city:                           formatted_city,
-            state:                          formatted_state,
-            country:                        spot.country,
-            formatted_address:              spot.formatted_address,
-            formatted_phone_number:         spot.formatted_phone_number,
-            international_phone_number:     spot.international_phone_number,
-            lat:                            spot.lat,
-            lng:                            spot.lng,
-            name:                           spot.name,
-            permanently_closed:             spot.permanently_closed,
-            place_id:                       spot.place_id,
-            rating:                         spot.rating,
-            types:                          spot.types,
-            region:                         spot.region,
-            google_url:                     spot.url,
-            vicinity:                       spot.vicinity,
-            website:                        spot.website,
-            online_source:                  "google places"
-            )
-
-            loc.update(street_number:       formatted_street_number,
-            postal_code:                    formatted_postal_code,
-            city:                           formatted_city,
-            state:                          formatted_state,
-            country:                        spot.country,
-            formatted_address:              spot.formatted_address,
-            formatted_phone_number:         spot.formatted_phone_number,
-            international_phone_number:     spot.international_phone_number,
-            lat:                            spot.lat,
-            lng:                            spot.lng,
-            name:                           spot.name,
-            permanently_closed:             spot.permanently_closed,
-            place_id:                       spot.place_id,
-            rating:                         spot.rating,
-            types:                          spot.types,
-            region:                         spot.region,
-            google_url:                     spot.url,
-            vicinity:                       spot.vicinity,
-            website:                        spot.website,
-            online_source:                  "google places")
-
-            # add any available photos
-            photo_set = LocationPhoto.get_set_of_google_places_photos(place_id: spot.place_id, max_width: 400, places_api_key: api_key)
-            if Array(photo_set).length > 0
-                photo_set = LocationPhoto.save_set_of_google_places_photos(location_id: loc.id, place_id: spot.place_id, max_width: 400, places_api_key: api_key)
-                puts "********************************"
-                puts "photo_set length: #{photo_set.length}"
-                puts "********************************"
+    def self.update_all_locations_in_state(state_code)
+        all_locations = NrelLocation.where(state: state_code)
+        all_zipcodes = all_locations.map { |location| location[:zip] }.uniq
+      
+        all_zipcodes.each do |zipcode|
+            # Check if there are any existing locations for the zipcode in the given state
+            #   existing_locations = Location.where(state: state_code, zip: zipcode)
+            # fetch data from NrelLocation model
+            nrel_locations = NrelLocation.where(zip: zipcode).map do |nrel_location|
+                {
+                name: nrel_location.name,
+                formatted_address: nrel_location.formatted_address,
+                latitude: nrel_location.latitude,
+                longitude: nrel_location.longitude,
+                state: nrel_location.state,
+                city: nrel_location.city,
+                zip: nrel_location.zip,
+                ev_level1_evse_num: nrel_location.ev_level1_evse_num,
+                ev_level2_evse_num: nrel_location.ev_level2_evse_num,
+                ev_dc_fast_num: nrel_location.ev_dc_fast_num,
+                ev_network: nrel_location.ev_network,
+                ev_network_web: nrel_location.ev_network_web,
+                phone: nrel_location.phone,
+                distance: nrel_location.distance,
+                hours: nrel_location.hours,
+                owner_type_code: nrel_location.owner_type_code,
+                fuel_type_code: nrel_location.fuel_type_code,
+                id: nrel_location.api_id,
+                updated_at: nrel_location.updated_at,
+                source: 'NREL'
+                }
             end
-                # [loc, photo_set]
-        end
 
-    end
-
-    def self.get_all_ev_charing_places(city:, state_abbr:, radius: 500, multipage: false)
-        first_spot_in_the_list = get_ev_charging_places_in_or_near_a_city(city: city, state_abbr:state_abbr, radius: radius).first
-        lat = first_spot_in_the_list.lat
-        lng = first_spot_in_the_list.lng
-        collection = GooglePlaces::Spot.list_by_query('Electric vehicle charging station', 
-                                                        api_key, 
-                                                        :lat => lat, 
-                                                        lng: lng, 
-                                                        radius: radius, 
-                                                        :multipage => multipage
-                                                    )
-
-    end    
-
-    def self.get_ev_charging_places_in_or_near_a_city(city:, state_abbr:, radius: 20)
-        spots = google_places_client.spots_by_query("EV charging places near #{city}", radius: radius )        
-    end
-
-    def self.import_all_google_places_from_a_state(state_abbr:, country_abbr: "US")
-        # FIX: repeated because the first time gives error -- (irb):47:in `<main>': undefined local variable or method `cites' for main:Object (NameError)
-        cities = CityState.list_cities_in_a_state(state_abbr: state_abbr, country_abbr: country_abbr)
-        cities = CityState.list_cities_in_a_state(state_abbr: state_abbr, country_abbr: country_abbr)
-
-        cities.each do |city|
-            save_list_of_ev_charging_places(city: "#{city}", state_abbr: "#{state_abbr}", radius: 500, multipage: false)
-
-            # log that the places in the city were updated in a summary
-            current_city              = city.presence || "FIX: #{city}"
-            current_state             = state_abbr.presence || "FIX: #{state_abbr}"
-            current_country           = country_abbr.presence || "FIX: #{country_abbr}"
-
-            city_state = CityState.where(city: current_city, state: current_state).first_or_create do |city|
-                        city.country = current_country
+            nrel_locations.each do |station|
+            #     # find or initialize a Location record with the given uniquey formatted address
+                station = OpenStruct.new(station)
+                location = Location.find_or_initialize_by(formatted_address: station.formatted_address)
+                
+            #     # update the fields on the NrelLocation record with the data from the API
+                loc_name = station.name|| "#{station.ev_network} EV Charging Station"
+                location.update!(
+                    name: loc_name,
+                    formatted_address: station.formatted_address,
+                    lat: station.latitude,
+                    lng: station.longitude,
+                    state: station.state,
+                    city: station.city,
+                    postal_code: station.zip,
+                    level_one_charger_count: station.ev_level1_evse_num,
+                    level_two_charger_count: station.ev_level2_evse_num,
+                    dc_fast_charger_count: station.ev_dc_fast_num,
+                    ev_network: station.ev_network,
+                    formatted_phone_number: station.phone,
+                    online_source: station.source,
+                    website: station.ev_network_web,
+                    hours: station.hours,
+                    owner_type_code: station.owner_type_code,
+                    updated_at: station.updated_at
+                  )
             end
-            city_state.touch
-
-            puts "################################"
-            puts "current_city: #{city}, #{state_abbr} #{current_country}"
-            puts "saved #{current_city}, #{current_state}"
-            sleep 0.5
         end
+            
+
+            # fetch data from other sources and merge with NrelLocation data
+            # other_locations = # fetch data from other sources and transform to the same format as nrel_locations
+
+            # merge the two lists and return the combined list
+            # all_locations = nrel_locations # + other_locations
+
     end
-
-    private
-        def self.api_key
-            Rails.application.credentials.dig(:google_places, :api_key)
-        end
-
-        def self.google_places_client
-            GooglePlaces::Client.new(self.api_key)
-        end
     
 end
