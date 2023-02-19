@@ -2,20 +2,20 @@ class CreateNrelLocations < ActiveRecord::Migration[7.0]
   def change
     create_table :nrel_locations do |t|
       t.string :access_code
-      t.string :access_days_time
+      t.string :hours
       t.string :access_detail_code
       t.string :cards_accepted
       t.datetime :date_last_confirmed, default: nil
       t.datetime :expected_date, default: nil
       t.string :fuel_type_code
       t.string :groups_with_access_code
-      t.integer :nrel_id
+      t.integer :api_id
       t.datetime :open_date, default: nil
       t.string :owner_type_code
       t.string :status_code
       t.string :restricted_access
-      t.string :station_name
-      t.string :station_phone
+      t.string :name
+      t.string :phone
       t.datetime :nrel_updated_at, default: nil
       t.string :facility_type
       t.string :geocode_status

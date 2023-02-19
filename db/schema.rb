@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_16_182830) do
+ActiveRecord::Schema[7.0].define(version: 2023_02_19_003818) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -136,6 +136,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_182830) do
     t.datetime "updated_at", null: false
     t.string "online_source"
     t.string "state"
+    t.integer "level_one_charger_count"
+    t.integer "level_two_charger_count"
+    t.integer "dc_fast_charger_count"
+    t.string "ev_network"
+    t.string "ev_network_web"
+    t.string "hours"
+    t.string "owner_type_code"
     t.index ["city"], name: "index_locations_on_city"
     t.index ["state"], name: "index_locations_on_state"
   end
@@ -154,20 +161,20 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_16_182830) do
 
   create_table "nrel_locations", force: :cascade do |t|
     t.string "access_code"
-    t.string "access_days_time"
+    t.string "hours"
     t.string "access_detail_code"
     t.string "cards_accepted"
     t.datetime "date_last_confirmed"
     t.datetime "expected_date"
     t.string "fuel_type_code"
     t.string "groups_with_access_code"
-    t.integer "nrel_id"
+    t.integer "api_id"
     t.datetime "open_date"
     t.string "owner_type_code"
     t.string "status_code"
     t.string "restricted_access"
-    t.string "station_name"
-    t.string "station_phone"
+    t.string "name"
+    t.string "phone"
     t.datetime "nrel_updated_at"
     t.string "facility_type"
     t.string "geocode_status"
