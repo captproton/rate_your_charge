@@ -6,6 +6,27 @@ class Location < ApplicationRecord
     has_many :location_reviews
     has_one  :nrel_location
 
+    def self.collect_all_location_of_us_by_state(country_abbr: "US")
+        # CS chokes occasionally.  Just try again.
+        state_symbols = [
+          :AK, :AL, :AR, :AZ, :CA, :CO, :CT, :DC, :DE, :FL,
+          :GA, :HI, :IA, :ID, :IL, :IN, :KS, :KY, :LA, :MA,
+          :MD, :ME, :MI, :MN, :MO, :MS, :MT, :NC, :ND, :NE,
+          :NH, :NJ, :NM, :NV, :NY, :OH, :OK, :OR, :PA, :RI,
+          :SC, :SD, :TN, :TX, :UT, :VA, :VT, :WA, :WI, :WV,
+          :WY] 
+        states = state_symbols.map {|x| x.to_s}
+  
+        states.each do |state|
+          puts "################################"
+          puts  "starting #{state}"
+          puts "################################"
+          sleep 0.5
+          self.update_all_locations_in_state(state)
+        end
+      end
+  
+  
     def self.update_all_locations_in_state(state_code)
         all_locations = NrelLocation.where(state: state_code)
         all_zipcodes = all_locations.map { |location| location[:zip] }.uniq
