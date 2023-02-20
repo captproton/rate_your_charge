@@ -1,0 +1,8 @@
+<%# app/views/locations/_search_results.html.erb %>
+<%= locations.count %>
+<% locations.each do |location| %>
+  <br>
+  <%= link_to location do %>
+    <%= highlight(location.city, params.dig(:search)) %>
+  <% end %>
+<% end %>

@@ -28,10 +28,10 @@ class Location < ApplicationRecord
   
   
     def self.update_all_locations_in_state(state_code)
-        all_locations = NrelLocation.where(state: state_code)
-        all_zipcodes = all_locations.map { |location| location[:zip] }.uniq
+        all_zipcodes = NrelLocation.where(state: state_code).pluck(:zip).uniq
       
         all_zipcodes.each do |zipcode|
+            puts "* #{zipcode}"
             # Check if there are any existing locations for the zipcode in the given state
             #   existing_locations = Location.where(state: state_code, zip: zipcode)
             # fetch data from NrelLocation model
