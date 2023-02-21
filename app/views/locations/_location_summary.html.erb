@@ -22,15 +22,17 @@
     <% end %> 
     <div class="col-span-1">
       <div class="flex items-center">
-        <a href="<%= location.website %>">
-          
-          <div class="mb-2 flex flex-col items-center mr-4">
-            <div style="text-align: center;">
-              <i class="fa-solid fa-globe fa-2x text-indigo-500"></i>
-              <h4 style="margin-top: 0.25em;" class="text-indigo-500">Website</h4>
+        <% if location.website.present? %>
+          <%= link_to location.website do %>
+            <div class="mb-2 flex flex-col items-center mr-4">
+              <div style="text-align: center;">
+                <i class="fa-solid fa-globe fa-2x text-indigo-500"></i>
+                <h4 style="margin-top: 0.25em;" class="text-indigo-500">Website</h4>
+              </div>
             </div>
-          </div>
-        </a>
+          <% end %>
+        <% end %>
+
         <a href='<%= "https://www.google.com/maps/dir//#{CGI.escape(location.formatted_address)}" %>' >
           <div class="mb-2 flex flex-col items-center mr-4">
             <div style="text-align: center;">
