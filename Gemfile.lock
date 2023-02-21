@@ -128,6 +128,8 @@ GEM
     ffi-compiler (1.0.1)
       ffi (>= 1.0.0)
       rake
+    font-awesome-rails (4.7.0.8)
+      railties (>= 3.2, < 8.0)
     friendly_id (5.5.0)
       activerecord (>= 4.0.0)
     globalid (1.1.0)
@@ -400,6 +402,7 @@ DEPENDENCIES
   devise (~> 4.8, >= 4.8.0)
   factory_bot_rails
   ffaker (~> 2.21)
+  font-awesome-rails (~> 4.7)
   friendly_id (~> 5.4)
   google_places (~> 2.0)
   importmap-rails

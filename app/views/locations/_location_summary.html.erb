@@ -1,94 +1,86 @@
-          <div class="grid grid-cols-2 gap-6">
-            <%= link_to(location) do %>
-              <div class="col-span-1">
-                <div class="mb-2">
-                  <h2 class="text-lg font-medium text-gray-700"><%#= location. %><%= location.name %></h2>
-                </div>
-                <div class="mb-2 summary-star-rating">
-                  <p class="text-sm text-gray-500">
-                    5.0 <i class="fas fa-star text-yellow-500 mr-1"></i>
-                    <i class="fas fa-star text-yellow-500 mr-1"></i>
-                    <i class="fas fa-star text-yellow-500 mr-1"></i>
-                    <i class="fas fa-star text-yellow-500 mr-1"></i>
-                    <i class="fas fa-star text-yellow-500 mr-1"></i>
-                    (2)
-                  </p>
-                </div>
-                <div class="mb-2 summary-formatted-address">
-                  <p class="text-sm text-gray-500"><%= location.formatted_address %></p>
-                </div>
-              </div>
-            <% end %>            
-            <div class="col-span-1">
-            <div class="flex items-center">
-              <a href="<%= location.website %>">
-                
-                <div class="mb-2 flex flex-col items-center mr-4">
-
-                  <div class="bg-indigo-500 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M57.7 193l9.4 16.4c8.3 14.5 21.9 25.2 38 29.8L163 255.7c17.2 4.9 29 20.6 29 38.5v39.9c0 11 6.2 21 16 25.9s16 14.9 16 25.9v39c0 15.6 14.9 26.9 29.9 22.6c16.1-4.6 28.6-17.5 32.7-33.8l2.8-11.2c4.2-16.9 15.2-31.4 30.3-40l8.1-4.6c15-8.5 24.2-24.5 24.2-41.7v-8.3c0-12.7-5.1-24.9-14.1-33.9l-3.9-3.9c-9-9-21.2-14.1-33.9-14.1H257c-11.1 0-22.1-2.9-31.8-8.4l-34.5-19.7c-4.3-2.5-7.6-6.5-9.2-11.2c-3.2-9.6 1.1-20 10.2-24.5l5.9-3c6.6-3.3 14.3-3.9 21.3-1.5l23.2 7.7c8.2 2.7 17.2-.4 21.9-7.5c4.7-7 4.2-16.3-1.2-22.8l-13.6-16.3c-10-12-9.9-29.5 .3-41.3l15.7-18.3c8.8-10.3 10.2-25 3.5-36.7l-2.4-4.2c-3.5-.2-6.9-.3-10.4-.3C163.1 48 84.4 108.9 57.7 193zM464 256c0-36.8-9.6-71.4-26.4-101.5L412 164.8c-15.7 6.3-23.8 23.8-18.5 39.8l16.9 50.7c3.5 10.4 12 18.3 22.6 20.9l29.1 7.3c1.2-9 1.8-18.2 1.8-27.5zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256z"/></svg>
-                  </div>
-                  <span class="text-indigo-500 hover:underline mt-2">Website</span>
-                </div>
-              </a>
-          <a href="google.com">
-
-            <div class="mb-2 flex flex-col items-center">
-              
-              <div class="bg-indigo-500 text-white rounded-full w-12 h-12 flex items-center justify-center">
-                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"><!--! Font Awesome Pro 6.3.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. --><path d="M464 256A208 208 0 1 0 48 256a208 208 0 1 0 416 0zM0 256a256 256 0 1 1 512 0A256 256 0 1 1 0 256zm306.7 69.1L162.4 380.6c-19.4 7.5-38.5-11.6-31-31l55.5-144.3c3.3-8.5 9.9-15.1 18.4-18.4l144.3-55.5c19.4-7.5 38.5 11.6 31 31L325.1 306.7c-3.2 8.5-9.9 15.1-18.4 18.4zM288 256a32 32 0 1 0 -64 0 32 32 0 1 0 64 0z"/></svg>
-              </div>
-              <span href="#" 
-                    class="text-indigo-500 hover:underline mt-2">
-                    Directions
-              </span>
+<div id="location-summary" class="border-b border-gray-300 py-2">
+  <div class="grid grid-cols-2 gap-6 ">
+    <%= link_to(location) do %>
+      <div class="col-span-1">
+        <div class="mb-2">
+          <h2 class="text-lg font-medium text-gray-700"><%#= location. %><%= location.name %></h2>
+        </div>
+        <div class="mb-2 summary-star-rating">
+          <p class="text-sm text-gray-500">
+            5.0 <i class="fas fa-star text-yellow-500 mr-1"></i>
+            <i class="fas fa-star text-yellow-500 mr-1"></i>
+            <i class="fas fa-star text-yellow-500 mr-1"></i>
+            <i class="fas fa-star text-yellow-500 mr-1"></i>
+            <i class="fas fa-star text-yellow-500 mr-1"></i>
+            (2)
+          </p>
+        </div>
+        <div class="mb-2 summary-formatted-address">
+          <p class="text-sm text-gray-500"><%= location.formatted_address.split(", ").first(2).join(", ") %></p>
+        </div>
+      </div>
+    <% end %> 
+    <div class="col-span-1">
+      <div class="flex items-center">
+        <a href="<%= location.website %>">
+          
+          <div class="mb-2 flex flex-col items-center mr-4">
+            <div style="text-align: center;">
+              <i class="fa-solid fa-globe fa-2x text-indigo-500"></i>
+              <h4 style="margin-top: 0.25em;" class="text-indigo-500">Website</h4>
             </div>
-          </a>
-
-        </div>
-
-        </div>
           </div>
+        </a>
+        <a href='<%= "https://www.google.com/maps/dir//#{CGI.escape(location.formatted_address)}" %>' >
+          <div class="mb-2 flex flex-col items-center mr-4">
+            <div style="text-align: center;">
+              <i class="fa-regular fa-compass fa-2x text-indigo-500"></i>
+              <h4 style="margin-top: 0.25em;" class="text-indigo-500">Directions</h4>
+            </div>
+          </div>
+        </a>
 
-            
-          <!-- types available -->
-          <div class="mt-6">
-            <p class="text-sm text-gray-500">Charger Types:</p>
-            
-              <ul class="mt-4 text-sm text-gray-500">
-              <li class="flex items-center justify-between mb-2">
-                <div class="flex items-center">
-                  <i class="fa fa-bolt mr-2 text-gray-400"></i>
-                  <div class="flex">
-                    <div>J1772</div>
-                    <div class="ml-2">6.48 kW</div>
-                  </div>
-                </div>
-                <div>Total 28</div>
-              </li>
-              <li class="flex items-center justify-between mb-2">
-                <div class="flex items-center">
-                  <i class="fa fa-bolt mr-2 text-gray-400"></i>
-                  <div class="flex">
-                    <div>CHAdeMO</div>
-                    <div class="ml-2">50 kW</div>
-                  </div>
-                </div>
-                <div>Total 12</div>
-              </li>
-              <li class="flex items-center justify-between mb-2">
-                <div class="flex items-center">
-                  <i class="fa fa-bolt mr-2 text-gray-400"></i>
-                  <div class="flex">
-                    <div>Tesla Supercharger</div>
-                    <div class="ml-2">120 kW</div>
-                  </div>
-                </div>
-                <div>Total 8</div>
-              </li>
-            </ul>
-            
+      </div>
+
+    </div>
+  </div>
               
-            </div>          
+  <!-- types available -->
+  <div class="mt-6">
+    <p class="text-sm text-gray-500">Charger Types:</p>
+        
+    <ul class="mt-4 text-sm text-gray-500 mr-2">
+      <li class="flex items-center justify-between mb-2">
+        <div class="flex items-center">
+          <i class="fa fa-bolt mr-2 text-gray-400"></i>
+          <div class="flex">
+            <div>J1772</div>
+            <div class="ml-2">6.48 kW</div>
+          </div>
+        </div>
+        <div>Total 28</div>
+      </li>
+      <li class="flex items-center justify-between mb-2">
+        <div class="flex items-center">
+          <i class="fa fa-bolt mr-2 text-gray-400"></i>
+          <div class="flex">
+            <div>CHAdeMO</div>
+            <div class="ml-2">50 kW</div>
+          </div>
+        </div>
+        <div>Total 12</div>
+      </li>
+      <li class="flex items-center justify-between mb-2">
+        <div class="flex items-center">
+          <i class="fa fa-bolt mr-2 text-gray-400"></i>
+          <div class="flex">
+            <div>Tesla Supercharger</div>
+            <div class="ml-2">120 kW</div>
+          </div>
+        </div>
+        <div>Total 8</div>
+      </li>
+    </ul>
+  </div>
 
-            
+</div>

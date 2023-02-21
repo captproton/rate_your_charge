@@ -1,8 +1,13 @@
+/*
+ *= require font-awesome
+ */
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* static home page */
+ 
+ /* static home page */
 .hero-image {
     background-image: url(/assets/hero_image.jpg);
     height: 64px;
