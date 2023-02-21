@@ -1,0 +1,13 @@
+<%# app/views/locations/_search_results.html.erb %>
+<div class="absolute z-50 mt-1 bg-white border rounded-lg shadow-lg w-64">
+  <% locations.each do |location| %>
+      <% city   = location[0].first %>
+      <% state  = location[0].last %>
+      <% count  = location[1] %>
+    <a href="<%= locations_path(city: city, state: state) %>" class="block px-4 py-2 hover:bg-gray-200 transition duration-150 ease-in-out">
+      <!-- <div class="font-semibold text-lg"><%= highlight("#{city}, #{state}", params.dig(:search)) %></div> -->
+      <div class="text-gray-600"><%= "#{city}, #{state}"%></div>
+      <div class="text-gray-500"><%= count %> locations</div>
+    </a>
+  <% end %>
+</div>

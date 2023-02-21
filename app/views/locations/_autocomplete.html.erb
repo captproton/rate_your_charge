@@ -1,0 +1,7 @@
+<!-- app/views/locations/_autocomplete.html.erb -->
+<div class="relative">
+    <%= text_field_tag :search, nil, data: { controller: "location-search" } %>
+    <datalist data-location-search-target="results">
+    </datalist>
+  </div>
+  

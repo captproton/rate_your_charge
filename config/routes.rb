@@ -3,8 +3,13 @@ require 'sidekiq/web'
 Rails.application.routes.draw do
   resources :listings
   resources :location_reviews
-  resources :locations
+  resources :locations do
+    collection do
+      post :search
+    end
+  end
   draw :madmin
+  get 'locations/autocomplete', to: 'locations#autocomplete'
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
 authenticate :user, lambda { |u| u.admin? } do
