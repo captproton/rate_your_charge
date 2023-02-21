@@ -20,10 +20,9 @@ class LocationsController < ApplicationController
 
   def search
     if params[:search].present?
-      @search_query = params[:search]
-      @locations = Location.where("city ILIKE ?", "%#{@search_query}%")
-                           .order(:state, :city)
-                           .pluck(:city, :state).uniq
+@search_query = params[:search]
+@locations = Location.where("city ILIKE ?", "%#{@search_query}%")
+                     .group(:city, :state).count
 
     # @locations = Location.where('city ILIKE ?', "%#{params[:search]}%").distinct
     
