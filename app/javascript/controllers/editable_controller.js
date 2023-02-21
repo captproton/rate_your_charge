@@ -1,14 +1,12 @@
 import { Controller } from "@hotwired/stimulus"
 import debounce from "lodash.debounce"
-// Connects to data-controller="location-search"
-
+// Connects to data-controller="editable"
 export default class extends Controller {
   connect() {
-    console.log("Hello from super search controller!", this.element)
+    console.log("Hello from editable controller!", this.element)
   }
 
   changed = debounce(() => {
-    // console.log(this.element.value)
     this.element.form.requestSubmit()
   }, 1000)  // 1.0 second
   

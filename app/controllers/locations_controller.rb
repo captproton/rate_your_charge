@@ -2,7 +2,11 @@ class LocationsController < ApplicationController
   before_action :set_location, only: %i[ show edit update destroy ]
 # 
   def index
-    @locations = Location.where(state: "HI").first(100)
+    if params[:city].present?
+      @locations = Location.where(city: params[:city]).where(state: params[:state])
+    else
+      @locations = Location.where(state: "HI").where(city: "Denver").first(10)
+    end
   end
 
   def autocomplete
@@ -16,7 +20,13 @@ class LocationsController < ApplicationController
 
   def search
     if params[:search].present?
-    @locations = Location.where('city ILIKE ?', "%#{params[:search]}%").distinct
+      @search_query = params[:search]
+      @locations = Location.where("city ILIKE ?", "%#{@search_query}%")
+                           .order(:state, :city)
+                           .pluck(:city, :state).uniq
+
+    # @locations = Location.where('city ILIKE ?', "%#{params[:search]}%").distinct
+    
     else
       @locations = []
     end

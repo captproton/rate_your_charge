@@ -4,5 +4,14 @@
 
 import { application } from "./application"
 
+import EditableController from "./editable_controller"
+application.register("editable", EditableController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
+
+import LocationSearchController from "./location_search_controller"
+application.register("location-search", LocationSearchController)
+
+import LocationsearchController from "./locationsearch_controller"
+application.register("locationsearch", LocationsearchController)
