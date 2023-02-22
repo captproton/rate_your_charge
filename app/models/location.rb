@@ -28,7 +28,7 @@ class Location < ApplicationRecord
   
   
     def self.update_all_locations_in_state(state_code)
-        all_zipcodes = NrelLocation.where(state: state_code).pluck(:zip).uniq
+        all_zipcodes = NrelLocation.where("fuel_type_code = ?", "ELEC").where(state: state_code).pluck(:zip).uniq
       
         all_zipcodes.each do |zipcode|
             puts "* #{zipcode}"

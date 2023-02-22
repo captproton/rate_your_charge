@@ -102,6 +102,8 @@ gem "city-state", "~> 0.1.0"
 gem "pagy", "~> 5.10"
 gem "inline_svg", "~> 1.8"
 gem "mapkick-rb", "~> 0.1.3"
+gem "font-awesome-rails", "~> 4.7"
 
 ## PLEASE TIDY UP.  DO NOT LEAVE GEMS BELOW THIS LINE.
+
 

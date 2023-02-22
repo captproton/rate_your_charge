@@ -1,0 +1,16 @@
+<div class="mb-2 summary-star-rating">
+    <% if location.location_reviews.count > 0 %>
+
+    <p class="text-sm text-gray-500">
+      5.0 <i class="fas fa-star text-yellow-500 mr-1"></i>
+      <i class="fas fa-star text-yellow-500 mr-1"></i>
+      <i class="fas fa-star text-yellow-500 mr-1"></i>
+      <i class="fas fa-star text-yellow-500 mr-1"></i>
+      <i class="fas fa-star text-yellow-500 mr-1"></i>
+      (2)
+    </p>
+    <% end %>
+    <% if location.location_reviews.count  == 0 %>
+        <p class="text-sm text-gray-500">No reviews</p>
+    <% end %>
+</div>

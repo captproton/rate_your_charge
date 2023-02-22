@@ -67,7 +67,8 @@ class NrelLocation < ApplicationRecord
 
   def self.fetch_locations(state_code:, api_key: self.api_key)
     # fetch location data from the NREL API for the given state code
-    url = "https://developer.nrel.gov/api/alt-fuel-stations/v1.json?state=#{state_code}&api_key=#{api_key}"
+    url = "https://developer.nrel.gov/api/alt-fuel-stations/v1.json?state=#{state_code}&fuel_type=ELEC&api_key=#{api_key}"
+
     response = HTTParty.get(url)
     data = JSON.parse(response.body)
 
