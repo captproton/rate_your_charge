@@ -1,0 +1,13 @@
+<div class="flex items-center mb-4">
+  <% if location.location_reviews.count > 0 %>
+    <i class="fas fa-star text-yellow-500 mr-1"></i>
+    <i class="fas fa-star text-yellow-500 mr-1"></i>
+    <i class="fas fa-star text-yellow-500 mr-1"></i>
+    <i class="fas fa-star text-gray-500 mr-1"></i>
+    <i class="fas fa-star text-gray-500"></i>
+    <span class="text-gray-400 ml-2">(<%= location.location_reviews.count %> reviews)</span>
+  <% end %>
+  <% if location.location_reviews.count  == 0 %>
+    <span class="text-gray-400 ml-2">No reviews</span>
+  <% end %>
+  </div>

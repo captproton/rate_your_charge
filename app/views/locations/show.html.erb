@@ -1,22 +1,10 @@
-
-<!-- tailwind and fontawesome css -->
-<link href="https://unpkg.com/tailwindcss@^2/dist/tailwind.min.css" rel="stylesheet">
-<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.14.0/css/all.css">
-
 <!-- main code -->
 <div class="bg-gray-800 text-white">
   <hr class="my-4">
   <img src="https://images.unsplash.com/photo-1607197109166-3ab4ee4b468f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="Hero Image" class="h-64 w-full object-cover">
   <div class="container mx-auto px-4 py-16">
     <h2 class="text-3xl font-medium mb-4"><%= @location.name %></h2>
-    <div class="flex items-center mb-4">
-      <i class="fas fa-star text-yellow-500 mr-1"></i>
-      <i class="fas fa-star text-yellow-500 mr-1"></i>
-      <i class="fas fa-star text-yellow-500 mr-1"></i>
-      <i class="fas fa-star text-gray-500 mr-1"></i>
-      <i class="fas fa-star text-gray-500"></i>
-      <span class="text-gray-400 ml-2">(123 reviews)</span>
-    </div>
+    <%= render "locations/reviews_summary", location: @location %>
     
       <hr class="my-4"/>
     
@@ -30,7 +18,11 @@
     
     <div class="charging-options">
       <ul class="list-none">
-        <li class="flex items-center justify-between mb-2">
+        <%= render "locations/charger_types/level_one_charger_count", location: @location    if !@location.level_one_charger_count.blank? %>
+        <%= render "locations/charger_types/level_two_charger_count", location: @location    if !@location.level_two_charger_count.blank? %>
+        <%= render "locations/charger_types/dc_fast_charger_count",   location: @location    if !@location.dc_fast_charger_count.blank? %>
+    
+        <!-- <li class="flex items-center justify-between mb-2">
             <div class="flex items-center">
               <i class="fa fa-bolt mr-2 text-gray-400"></i>
               <div class="flex">
@@ -39,10 +31,10 @@
               </div>
             </div>
             <div>Total 28</div>
-          </li>
+          </li> -->
           <!-- repeat for example
          -->
-          <li class="flex items-center justify-between mb-2">
+          <!-- <li class="flex items-center justify-between mb-2">
             <div class="flex items-center">
               <i class="fa fa-bolt mr-2 text-gray-400"></i>
               <div class="flex">
@@ -61,7 +53,7 @@
               </div>
             </div>
             <div>Total 8</div>
-          </li>
+          </li> -->
               </ul>
     </div>
     
