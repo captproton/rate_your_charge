@@ -1,63 +1,3 @@
-<style>
-  .super-container {
-  margin: 0;
-  padding: 0;
-  display: grid;
-  grid-template-columns: 1fr;
-  grid-template-rows: 1fr;
-}
-
-#content-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 25%;
-  height: 100%;
-  display: grid;
-  grid-template-rows: auto 1fr;
-  grid-template-areas: "header" "content";
-  z-index: 2;
-  background: rgba(255, 255, 255, 0.8);
-  overflow-y: auto;
-}
-
-header {
-  grid-area: header;
-  padding: 20px;
-  background: #333;
-  color: #fff;
-  font-size: 24px;
-  font-weight: bold;
-  text-align: center;
-}
-
-#content {
-  grid-area: content;
-  padding: 20px;
-}
-
-#image {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  background: url('https://source.unsplash.com/random/1920x1080');
-  background-size: cover;
-  background-position: center;
-}
-
-@media screen and (max-width: 768px) {
-  #content-container {
-    position: relative;
-    width: 100%;
-    height: auto;
-    grid-template-areas: "header" "content";
-    overflow-y: visible;
-  }
-}
-</style>
 <div class="super-container">
   <div id="content-container">
       <header>
@@ -73,7 +13,11 @@ header {
           </div>
           </div>
     </div>
-    <div id="image"></div>
+    <% if params[:city].present? %>
+      <div id="image" style="background-image: url(<%= image_path("hero_image") %>);"></div>
+    <% else %>
+      <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america") %>);"></div>
+    <% end %>
     
   </div>
   
