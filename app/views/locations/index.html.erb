@@ -1,20 +1,23 @@
-<!-- <div class="search-box relative">
-  <form data-controller="search" class="w-full">
-    <input type="search" data-action="input->search#search" class="w-full px-4 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Search for city and state">
-  </form>
-  <div data-target="search.results" class="dropdown-list absolute z-10 w-full py-1 mt-1 overflow-y-auto text-base bg-white border rounded shadow-lg" data-action="click->search#show"></div>
-</div>
+<div class="super-container">
+  <div id="content-container">
+      <header>
+        <%= render partial: "locations/autocomplete" %>
 
-<div data-target="search.locations" class="search-results"></div> -->
-<!-- <h2 data-controller="editable" data-action="keyup->editable#changed" contenteditable class="text-red-900" style="width:100%; background-color:pink"> -->
-  <%#= @locations.first.name %>
- 
-<%#= render "locations/search_results" %>
-
-<div class="locations">
-  <% @locations.each do |location| %>
-    <%= render "location_summary", location: location %>
-  <% end %>
-    <%#= render "location", location: location %>
-</div>
-   
+	  </header>
+      <div id="content">
+        <div class="locations">
+          <% @locations.each do |location| %>
+            <%= render "location_summary", location: location %>
+          <% end %>
+            <%#= render "location", location: location %>
+          </div>
+          </div>
+    </div>
+    <% if params[:city].present? %>
+      <div id="image" style="background-image: url(<%= image_path("hero_image") %>);"></div>
+    <% else %>
+      <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america") %>);"></div>
+    <% end %>
+    
+  </div>
+  
