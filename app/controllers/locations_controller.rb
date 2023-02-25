@@ -4,8 +4,9 @@ class LocationsController < ApplicationController
   def index
     if params[:city].present?
       @locations = Location.where(city: params[:city]).where(state: params[:state])
+      @location_pins = @locations.map{|f| {lat: f.lat, lng: f.lng, label: f.city, tooltip: "5 stars"}}
     else
-      @locations = Location.where(state: "HI").where(city: "Denver").first(10)
+      @locations = []
     end
   end
 
