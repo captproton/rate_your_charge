@@ -1,20 +1,79 @@
-<!-- <div class="search-box relative">
-  <form data-controller="search" class="w-full">
-    <input type="search" data-action="input->search#search" class="w-full px-4 py-2 leading-tight text-gray-700 border rounded shadow appearance-none focus:outline-none focus:shadow-outline" placeholder="Search for city and state">
-  </form>
-  <div data-target="search.results" class="dropdown-list absolute z-10 w-full py-1 mt-1 overflow-y-auto text-base bg-white border rounded shadow-lg" data-action="click->search#show"></div>
-</div>
+<style>
+  .super-container {
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr;
+}
 
-<div data-target="search.locations" class="search-results"></div> -->
-<!-- <h2 data-controller="editable" data-action="keyup->editable#changed" contenteditable class="text-red-900" style="width:100%; background-color:pink"> -->
-  <%#= @locations.first.name %>
- 
-<%#= render "locations/search_results" %>
+#content-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 25%;
+  height: 100%;
+  display: grid;
+  grid-template-rows: auto 1fr;
+  grid-template-areas: "header" "content";
+  z-index: 2;
+  background: rgba(255, 255, 255, 0.8);
+  overflow-y: auto;
+}
 
-<div class="locations">
-  <% @locations.each do |location| %>
-    <%= render "location_summary", location: location %>
-  <% end %>
-    <%#= render "location", location: location %>
-</div>
-   
+header {
+  grid-area: header;
+  padding: 20px;
+  background: #333;
+  color: #fff;
+  font-size: 24px;
+  font-weight: bold;
+  text-align: center;
+}
+
+#content {
+  grid-area: content;
+  padding: 20px;
+}
+
+#image {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  background: url('https://source.unsplash.com/random/1920x1080');
+  background-size: cover;
+  background-position: center;
+}
+
+@media screen and (max-width: 768px) {
+  #content-container {
+    position: relative;
+    width: 100%;
+    height: auto;
+    grid-template-areas: "header" "content";
+    overflow-y: visible;
+  }
+}
+</style>
+<div class="super-container">
+  <div id="content-container">
+      <header>
+        <%= render partial: "locations/autocomplete" %>
+
+	  </header>
+      <div id="content">
+        <div class="locations">
+          <% @locations.each do |location| %>
+            <%= render "location_summary", location: location %>
+          <% end %>
+            <%#= render "location", location: location %>
+          </div>
+          </div>
+    </div>
+    <div id="image"></div>
+    
+  </div>
+  

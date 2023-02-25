@@ -9,6 +9,7 @@
     "@rails/request.js": "^0.0.8",
     "@rails/ujs": "^7.0.4-2",
     "autoprefixer": "^10.4.13",
+    "daisyui": "^2.51.0",
     "esbuild": "^0.17.5",
     "esbuild-rails": "^1.0.3",
     "local-time": "^2.1.0",
