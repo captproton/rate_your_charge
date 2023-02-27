@@ -1,6 +1,18 @@
 class LocationsController < ApplicationController
-  before_action :set_location, only: %i[ show edit update destroy ]
+  before_action :set_location, only: %i[ edit show update destroy ]
 # 
+  def second_page
+    
+  end
+
+  def third_page
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.update("content", partial: 'filler')
+      end
+    end
+  end
+
   def index
     if params[:city].present?
       @locations = Location.where(city: params[:city]).where(state: params[:state])
@@ -99,17 +111,20 @@ class LocationsController < ApplicationController
 
   # GET /locations/1 or /locations/1.json
   def show
-    @review = @location.location_reviews.new
+    @location = Location.find(params[:id])
+    respond_to do |format|
+      format.html
+      format.turbo_stream
+    end
   end
-
   # GET /locations/new
   # def new
   #   @location = Location.new
   # end
 
   # GET /locations/1/edit
-  # def edit
-  # end
+  def edit
+  end
 
   # POST /locations or /locations.json
   # def create

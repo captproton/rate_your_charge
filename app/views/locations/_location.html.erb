@@ -1,9 +1,5 @@
-<div id="<%= dom_id location %>">
-
-  <p>
-    <strong>Formatted address:</strong>
-    <%= link_to "#{location.name}", location, class: "text-color-blue-500" %> -- <%= "#{location.formatted_address} "%>
-  </p>
-
-
+<div>
+  <h2><%= location.name %></h2>
+  <p><%= location.formatted_address %></p>
+  <!-- add any other details you want to display here -->
 </div>

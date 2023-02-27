@@ -5,7 +5,10 @@ Rails.application.routes.draw do
   resources :location_reviews
   resources :locations do
     collection do
-      post :search
+      post  :search
+      get   :second_page
+      post  :third_page
+      post  :edit
     end
   end
   draw :madmin
