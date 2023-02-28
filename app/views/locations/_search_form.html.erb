@@ -1,14 +1,43 @@
-<div id="search-form" style "z-index: 1000;" >
-  <%= form_with url: search_locations_path, method: :post do |form| %>
-  <%= form.search_field :search,
-                        value: params[:search],
-                        data: { controller: "location-search", action: "keyup->location-search#changed" },
-                        # oninput: "this.form.requestSubmit()",
-                        class: "w-full px-4 py-2 leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
-                        placeholder:"Search for a city" %>
-<% end %>
+<nav class="bg-white rounded-lg shadow-lg px-4 py-2 flex items-center justify-between max-w-screen-sm">  
+  <!-- Hamburger button -->
+  <%= link_to "#",  
+              class: "text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900", 
+              data:  {turbo_frame: "app-modal"} do %>
 
+    <svg class="h-6 w-6 fill-current" viewBox="0 0 24 24">
+      <path fill-rule="evenodd" clip-rule="evenodd" d="M4 6H20V8H4V6ZM4 11H20V13H4V11ZM4 16H20V18H4V16Z"></path>
+    </svg>
+  <% end %>
+  <!-- Search form -->
+  <div id="search-form" style "z-index: 1000;" >
+  <%= form_with url: search_locations_path, class: "flex-grow ml-4", method: :post do |form| %>
+    <%= form.search_field :search,
+            value: params[:city],
+            data: { controller: "location-search", action: "keyup->location-search#changed" },
+            # oninput: "this.form.requestSubmit()",
+            class: "w-full px-4 py-2 leading-tight border rounded shadow appearance-none focus:outline-none focus:shadow-outline",
+            placeholder:"Search for a city" %>
+  <% end %>
 </div>
+
+  <!-- Vertical line -->
+  <div class="h-6 border-r border-gray-300 mx-4"></div>
+  <!-- User icon -->
+  <div class="relative inline-block text-left">
+    <div>
+      <%= link_to "#",  
+        class: "text-gray-500 hover:text-gray-900 focus:outline-none focus:text-gray-900", 
+        data:  {turbo_frame: "app-modal"} do %>
+
+          <span class="sr-only">Open user menu</span>
+          <i class="fa-regular fa-circle-user"></i>
+      <% end %>
+
+    </div>
+  </div>
+</nav>
+
+
 <div id="search_results">
 </div>
 
