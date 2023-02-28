@@ -15,7 +15,7 @@ export default class extends Controller {
     // Remove the src attribute from the modal
     modal.removeAttribute('src');
 
-    // Remove complete attribute from the modal
-    modal.removeAttribute('complete');
+    // Remove the modal
+    modal.remove();
   }
 }

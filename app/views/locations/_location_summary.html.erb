@@ -1,6 +1,7 @@
 <div id="location-summary" class="border-b border-gray-300 py-2 ml-6">
   <div class="grid grid-cols-2 gap-4 ">
-    <%= link_to(location) do %>
+    <%= link_to location, data:  {turbo_frame: "app-modal"} do %>
+
       <div class="col-span-1">
         <div class="mb-2">
           <h2 class="text-lg font-medium text-gray-700"><%= location.name %></h2>

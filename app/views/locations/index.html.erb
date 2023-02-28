@@ -1,37 +1,19 @@
 <div class="super-container">
   <div id="content-container">
-      <header>
+    <header>
         <%= render partial: "locations/autocomplete" %>
-        <!-- !!! -->
-        <div class="w-full text-center my-8">
-          <%#= button_to "Load stuff!", third_page_locations_path, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-          <%= button_to "Edit this inbox", third_page_locations_path, method: :post, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-        </div>
-        <!-- !!! -->
 	  </header>
-        <turbo-frame id="location-details"></turbo-frame>
+    <div class="content">
 
-        <%= link_to "New location", new_location_path, data: { turbo_frame: "app-modal" }, class: "text-white bg-blue-700 " %>
+    </div>
         <div class="locations">
           <% @locations.each do |location| %>
-            <% frame_id = dom_id(location, "name_turbo_frame") %>
-            <%= turbo_frame_tag frame_id do %>
-              <h2><%= location.name %></h2>
-              <%= link_to "Show this location", location, data: {turbo_frame: "app-modal"}, class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" %>
-              <%= link_to edit_location_path(location), class: "text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 font-medium rounded-lg px-5 py-2.5 mr-2 mb-2 dark:bg-blue-600 dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800" do %>
-                Edit  
-              <% end %>
-              <%#= link_to location.name, edit_location_path(location), data: { turbo_frame: frame_id } %>
-              <%#= render partial: "locations/location", locals: { location: location } %>
-            <% end %>
-
+            <%= render "location_summary", location: location %>
           <% end %>
-            <%#= render "location", location: location %>
-          </div>
-          </div>
+        </div>
+      </div>
     </div>
     <% if params[:city].present? %>
-      <!-- <div id="image" style="background-image: url(<%= image_path("hero_image") %>);"></div> -->
       <%= js_map @location_pins, height: "100vh"  %>
     <% else %>
       <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america") %>);"></div>
