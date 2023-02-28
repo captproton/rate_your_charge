@@ -16,7 +16,7 @@
     <% if params[:city].present? %>
       <%= js_map @location_pins, height: "100vh"  %>
     <% else %>
-      <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america") %>);"></div>
+      <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america.jpg") %>);"></div>
     <% end %>
     
   </div>
