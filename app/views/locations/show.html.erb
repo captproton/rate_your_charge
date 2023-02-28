@@ -1,3 +1,19 @@
+<%= turbo_frame_tag "app-modal" do %>
+
+    <div class="app-modal bg-orange-200">
+
+      <div class="back">
+        <%= link_to "Cancel",
+                     "#",
+                     data: {controller: "modals", action: "modals#close"},
+                     class: "cancel-button" %>
+                     
+      </div>
+    </div>
+
+    <% end %>
+    
+
 <!-- main code -->
 <div class="bg-gray-800 text-white">
   <hr class="my-4">

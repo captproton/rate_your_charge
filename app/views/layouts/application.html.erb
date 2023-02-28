@@ -16,6 +16,7 @@
       <%#= render partial: "shared/navbar" %>
 
       <div class="px-3 lg:px-0 h-full">
+        <%= turbo_frame_tag "app-modal" %>
         <%= yield %>
       </div>
     </div>

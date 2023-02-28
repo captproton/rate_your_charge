@@ -1,42 +1,23 @@
 <div id="<%= dom_id listing %>">
-  <p>
-    <strong>Address line1:</strong>
-    <%= listing.address_line1 %>
-  </p>
+  <strong>  <%= listing.title %></strong> <br>
+  Address line1:  <%= listing.address_line1 %>
 
-  <p>
-    <strong>Address line2:</strong>
-    <%= listing.address_line2 %>
-  </p>
-
-  <p>
-    <strong>City:</strong>
-    <%= listing.city %>
-  </p>
-
-  <p>
-    <strong>State:</strong>
-    <%= listing.state %>
-  </p>
-
-  <p>
-    <strong>Postal code:</strong>
-    <%= listing.postal_code %>
-  </p>
-
-  <p>
-    <strong>Country:</strong>
-    <%= listing.country %>
-  </p>
-
-  <p>
-    <strong>Lat:</strong>
-    <%= listing.lat %>
-  </p>
-
-  <p>
-    <strong>Lng:</strong>
-    <%= listing.lng %>
-  </p>
-
+  Address line2: <%= listing.address_line2 %> <br> 
+  City: <%= listing.city %> <br>
+  State:   <%= listing.state %> <br>
+  
+  Postal code:  <%= listing.postal_code %> <br>
+  Country:   <%= listing.country %> <br>
+  Lat:  <%= listing.lat %> <br>
+  Lng:  <%= listing.lng %> br
 </div>
+<hr>&nbsp;
+<%= link_to new_listing_path,  class: 'btn btn-primary', data:  {turbo_frame: "app-modal"} do %>
+Add New Listing
+<% end %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to listing,  class: 'btn btn-primary', data:  {turbo_frame: "app-modal"} do %>
+Show
+<% end %>
+
+<hr>

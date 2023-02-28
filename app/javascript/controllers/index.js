@@ -15,3 +15,6 @@ application.register("location-search", LocationSearchController)
 
 import LocationsearchController from "./locationsearch_controller"
 application.register("locationsearch", LocationsearchController)
+
+import ModalsController from "./modals_controller"
+application.register("modals", ModalsController)

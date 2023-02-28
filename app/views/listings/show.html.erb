@@ -1,3 +1,15 @@
+<%= turbo_frame_tag "app-modal" do %>
+
+    <div class="app-modal bg-orange-200">
+
+      <div class="back">
+        <%= link_to "Cancel",
+                     "#",
+                     data: {controller: "modals", action: "modals#close"},
+                     class: "cancel-button" %>
+                     
+      </div>
+      
 <div class="page-header">
   <%= link_to listings_path, class: 'btn btn-default' do %>
     All Listings
@@ -26,3 +38,6 @@
   <dt>Lng:</dt>
   <dd><%= @listing.lng %></dd>
 </dl>
+</div>
+
+<% end %>

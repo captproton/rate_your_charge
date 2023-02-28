@@ -63,8 +63,8 @@
   <div id="content-container">
       <header>
 		<div class="locations">
-			<% @listings.each do |location| %>
-			  <%= render "location_summary", location: location %>
+			<% @listings.each do |listing| %>
+			  <%= render "listing", listing: listing %>
 			<% end %>
 			  <%#= render "location", location: location %>
 		  </div>
