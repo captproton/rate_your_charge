@@ -7,4 +7,8 @@ class HomeController < ApplicationController
 
   def privacy
   end
+
+  def user_links
+    
+  end
 end

@@ -11,10 +11,12 @@ Rails.application.routes.draw do
       post  :edit
     end
   end
+
   draw :madmin
   get 'locations/autocomplete', to: 'locations#autocomplete'
   get '/privacy', to: 'home#privacy'
   get '/terms', to: 'home#terms'
+  get '/user_links', to: 'home#user_links'
 authenticate :user, lambda { |u| u.admin? } do
   mount Sidekiq::Web => '/sidekiq'
 
@@ -44,7 +46,7 @@ end
   end
 
   # Public marketing homepage
-  root to: "static#index"
+  root to: "locations#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

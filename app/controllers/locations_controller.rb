@@ -131,6 +131,10 @@ class LocationsController < ApplicationController
       @location = Location.new
     end
   
+    def user_links
+      
+    end
+
   # POST /locations or /locations.json
   # def create
   #   @location = Location.new(location_params)
