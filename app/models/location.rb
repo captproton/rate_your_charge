@@ -4,6 +4,8 @@ class Location < ApplicationRecord
     # validates :lat, uniqueness: {scope: :lng}
 
     has_many :location_reviews
+    has_many :visits
+    has_many :votes, through: :visits, source: :upvotes
     has_one  :nrel_location
 
     def self.collect_all_location_of_us_by_state(country_abbr: "US")
@@ -88,14 +90,35 @@ class Location < ApplicationRecord
                   )
             end
         end
-            
 
-            # fetch data from other sources and merge with NrelLocation data
-            # other_locations = # fetch data from other sources and transform to the same format as nrel_locations
+        # fetch data from other sources and merge with NrelLocation data
+        # other_locations = # fetch data from other sources and transform to the same format as nrel_locations
 
-            # merge the two lists and return the combined list
-            # all_locations = nrel_locations # + other_locations
+        # merge the two lists and return the combined list
+        # all_locations = nrel_locations # + other_locations
 
     end
+
+    def count_upvotes
+      return 0 if visits.empty?
+      upvote_count = visits.sum(&:get_upvotes).count
+    end
     
+    def count_downvotes
+      return 0 if visits.empty?
+      downvote_count = visits.sum(&:get_downvotes).count
+    end
+
+    def calculate_average(total_upvotes: count_upvotes, total_downvotes: count_downvotes)
+      total_visits = visits.count
+      average_score = total_visits == 0 ? 0 : (total_upvotes - total_downvotes).to_f / total_visits
+    end
+
+    def cache_ratings(upvotes: self.count_upvotes, downvotes: self.count_downvotes, average: self.calculate_average) 
+      scores = {upvotes:upvotes, downvotes: downvotes, average: average}
+      metrics = OpenStruct.new(scores)
+      update(cached_scoped_like_votes_up: metrics.upvotes, 
+            cached_scoped_like_votes_down: metrics.downvotes, 
+            cached_weighted_like_average: metrics.average)
+    end
 end

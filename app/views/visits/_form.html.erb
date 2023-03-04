@@ -1,0 +1,45 @@
+
+
+<div class="max-w-screen-md mx-auto my-8">
+  <%= form_with(model: visit) do |form| %>
+    <% if visit.errors.any? %>
+      <div class="alert alert-error">
+        <h2><%= pluralize(visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
+        <ul>
+        <% visit.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="mb-6">
+      <%= form.label :location_id, class: 'label' %>
+      <%= form.text_field :location_id, class: 'input' %>
+    </div>
+
+    <div class="form-group mb-6">
+      <%= form.label :vote_type, "Vote Type" %><br>
+      <%= form.radio_button :vote_type, "upvote" %>
+      <%= form.label :vote_type_upvote, "Upvote" %><br>
+      <%= form.radio_button :vote_type, "downvote" %>
+      <%= form.label :vote_type_downvote, "Downvote" %>
+    </div>
+
+    <div class="mb-6">
+      <% if visit.persisted? %>
+        <div class="float-right">
+          <%= link_to 'Destroy', visit, method: :delete, class: "text-red-600 hover:text-red-800", data: { confirm: 'Are you sure?' } %>
+        </div>
+      <% end %>
+
+      <%= form.submit class: 'button button-primary rounded-md px-4 py-2 mr-2 bg-blue-700 text-white' %>
+
+      <% if visit.persisted? %>
+        <%= link_to "Cancel", visit, class: "button button-secondary" %>
+      <% else %>
+        <%= link_to "Cancel", visits_path, class: "button button-secondary" %>
+      <% end %>
+    </div>
+  <% end %>
+</div>

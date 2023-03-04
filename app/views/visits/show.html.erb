@@ -1,0 +1,16 @@
+<div class="page-header">
+  <%= link_to visits_path, class: 'btn btn-default' do %>
+    All Visits
+  <% end %>
+  <%= link_to edit_visit_path(@visit), class: 'btn btn-primary' do %>
+    Edit
+  <% end %>
+  <h1>Show visit</h1>
+</div>
+
+<dl class="dl-horizontal">
+  <dt>User:</dt>
+  <dd><%= @visit.user %></dd>
+  <dt>Location:</dt>
+  <dd><%= @visit.location %></dd>
+</dl>

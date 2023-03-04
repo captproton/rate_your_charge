@@ -1,0 +1,45 @@
+
+
+
+<div class="row">
+  <div class="col-sm-6">
+    <h1>Visits</h1>
+  </div>
+
+  <div class="col-sm-6 text-end">
+  <%= link_to new_visit_path, class: 'btn btn-primary' do %>
+    Add New Visit
+  <% end %>
+  </div>
+</div>
+
+<div class="table-responsive">
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+      <tr>
+    
+
+            <th>User</th>
+            <th>Location</th>
+            
+          <th></th>
+        
+      </tr>
+    </thead>
+
+    <tbody>
+      <% @visits.each do |visit| %>
+        <%= content_tag :tr, id: dom_id(visit), class: dom_class(visit) do %>
+          
+
+                      <td><%= visit.user.first_name %></td>
+                      <td><%= visit.location.name %></td>
+          
+          
+            <td><%= link_to 'Show', visit %></td>
+          
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+</div>
