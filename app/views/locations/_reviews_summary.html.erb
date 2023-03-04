@@ -31,6 +31,22 @@
 
 
   <% else %>
-    <span class="text-gray-400 ml-2">No reviews</span>
+  <div class="grid grid-cols-1 gap-y-4">
+    <div class="flex items-left justify-left">
+      <p class="text-left">No reviews.  Be the first!</p>
+    </div>
+    <div class="flex items-center justify-center">
+      <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded relative" style="margin: auto ">
+        <span class="fa-stack fa-lg absolute top-0 right-0">
+          <i class="fa fa-square-o fa-stack-2x"></i>
+          <i class="fa fa-pencil fa-stack-1x"></i>
+        </span>
+        Write a Review
+      </button>
+    </div>
+  </div>
+  
+
+
   <% end %>
   </div>
