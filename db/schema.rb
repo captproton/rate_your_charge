@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_02_19_003818) do
+ActiveRecord::Schema[7.0].define(version: 2023_03_03_193415) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -143,6 +143,13 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_003818) do
     t.string "ev_network_web"
     t.string "hours"
     t.string "owner_type_code"
+    t.integer "cached_scoped_like_votes_total", default: 0
+    t.integer "cached_scoped_like_votes_score", default: 0
+    t.integer "cached_scoped_like_votes_up", default: 0
+    t.integer "cached_scoped_like_votes_down", default: 0
+    t.integer "cached_weighted_like_score", default: 0
+    t.integer "cached_weighted_like_total", default: 0
+    t.float "cached_weighted_like_average", default: 0.0
     t.index ["city"], name: "index_locations_on_city"
     t.index ["state"], name: "index_locations_on_state"
   end
@@ -263,9 +270,37 @@ ActiveRecord::Schema[7.0].define(version: 2023_02_19_003818) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  create_table "visits", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "location_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.text "comment"
+    t.index ["location_id"], name: "index_visits_on_location_id"
+    t.index ["user_id"], name: "index_visits_on_user_id"
+  end
+
+  create_table "votes", force: :cascade do |t|
+    t.string "votable_type"
+    t.bigint "votable_id"
+    t.string "voter_type"
+    t.bigint "voter_id"
+    t.boolean "vote_flag"
+    t.string "vote_scope"
+    t.integer "vote_weight"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["votable_id", "votable_type", "vote_scope"], name: "index_votes_on_votable_id_and_votable_type_and_vote_scope"
+    t.index ["votable_type", "votable_id"], name: "index_votes_on_votable"
+    t.index ["voter_id", "voter_type", "vote_scope"], name: "index_votes_on_voter_id_and_voter_type_and_vote_scope"
+    t.index ["voter_type", "voter_id"], name: "index_votes_on_voter"
+  end
+
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "location_photos", "locations"
   add_foreign_key "location_reviews", "locations"
   add_foreign_key "services", "users"
+  add_foreign_key "visits", "locations"
+  add_foreign_key "visits", "users"
 end
