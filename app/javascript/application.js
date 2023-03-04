@@ -16,6 +16,9 @@ import "./controllers"
 // start mapkick with mapbox
 import "mapkick/bundle"
 
+// start cheartkick
+import "chartkick/chart.js"
+
 // dropdown for locations
 document.addEventListener("click", e => {
     const isDropdownButton = e.target.matches("[data-dropdown-button]")

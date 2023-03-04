@@ -109,3 +109,5 @@ gem "acts_as_votable", "~> 0.14.0"
 
 
 
+
+gem "chartkick", "~> 5.0"
