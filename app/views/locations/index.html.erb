@@ -3,21 +3,16 @@
     <header>
         <%= render partial: "locations/autocomplete" %>
 	  </header>
-    <div class="content">
-
+    <div class="locations">
+      <% @locations.each do |location| %>
+        <%= render "location_summary", location: location %>
+      <% end %>
     </div>
-        <div class="locations">
-          <% @locations.each do |location| %>
-            <%= render "location_summary", location: location %>
-          <% end %>
-        </div>
-      </div>
-    </div>
-    <% if params[:city].present? %>
-      <%= js_map @location_pins, height: "100vh"  %>
-    <% else %>
-      <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america.jpg") %>);"></div>
-    <% end %>
-    
   </div>
+</div>
+<% if params[:city].present? %>
+  <%= js_map @location_pins, height: "100vh"  %>
+<% else %>
+  <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america.jpg") %>);"></div>
+<% end %>
   
