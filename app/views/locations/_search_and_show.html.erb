@@ -1,0 +1,13 @@
+<div class="super-container">
+    <div id="content-container">
+      <header>
+          <%= render partial: "locations/autocomplete" %>
+        </header>
+      <div class="locations">
+        <% @locations.each do |location| %>
+          <%= render "location_summary", location: location %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  

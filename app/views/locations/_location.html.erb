@@ -1,5 +1,41 @@
-<div>
-  <h2><%= location.name %></h2>
-  <p><%= location.formatted_address %></p>
-  <!-- add any other details you want to display here -->
+
+<div class="location-details">
+  <div class="navbar">
+    <h3>Location Details h3</h3>
+    <!-- <button class="close-details-btn">Close</button> -->
+    <%= link_to "Cancel",
+    "#",
+    data: {controller: "modals", action: "modals#close"},
+    class: "close-details-btn" %>
+
+  </div>
+  <div class="location-info">
+    <img src="https://via.placeholder.com/300x200.png" alt="Location photo">
+    <h4>Location Name</h4>
+    <p>Address</p>
+    <div class="reviews">
+      <div class="overall-rating">4.5</div>
+      <div class="review">
+        <div class="rating">4.0</div>
+        <div class="comment">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</div>
+      </div>
+      <div class="review">
+        <div class="rating">5.0</div>
+        <div class="comment">Nullam consectetur rhoncus mauris.</div>
+      </div>
+      <div class="review">
+        <div class="rating">5.0</div>
+        <div class="comment">Duis vel eros vitae sapien laoreet consequat ut vel lacus.</div>
+      </div>
+      <div class="review">
+        <div class="rating">4.0</div>
+        <div class="comment">Etiam cursus neque auctor ipsum varius, nec commodo nulla pharetra.</div>
+      </div>
+    </div>
+    <div class="photos">
+      <img src="https://via.placeholder.com/300x200.png" alt="Location photo" height="200" width="300">
+      <img src="https://via.placeholder.com/300x200.png" alt="Location photo" height="200" width="300">
+      <img src="https://via.placeholder.com/300x200.png" alt="Location photo" height="200" width="300">
+    </div>
+  </div>
 </div>
