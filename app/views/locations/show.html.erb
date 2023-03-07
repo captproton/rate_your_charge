@@ -1,22 +1,25 @@
 <%= turbo_frame_tag "app-modal" do %>
-  <%= link_to "#", 
-  class:  "absolute top-0 right-0 z-10 bg-white rounded-full p-2",
-  data: {controller: "modals", action: "modals#close"} do %>
-
-  <svg  xmlns="http://www.w3.org/2000/svg" 
-  class="h-6 w-6 text-black" 
-  viewBox="0 0 20 20" 
-  fill="none" 
-  stroke="currentColor" 
-  stroke-width="2">
-  <path d="M5 5l10 10M15 5L5 15" />
-  </svg>
+  <div class="app-modal">
+    <%= link_to "#", 
+    class:  "absolute top-0 right-0 z-10 bg-white rounded-full p-2",
+    data: {controller: "modals", action: "modals#close"} do %>
+  
+    <svg  xmlns="http://www.w3.org/2000/svg" 
+    class="h-6 w-6 text-black" 
+    viewBox="0 0 20 20" 
+    fill="none" 
+    stroke="currentColor" 
+    stroke-width="2">
+    <path d="M5 5l10 10M15 5L5 15" />
+    </svg>
+    <% end %>
+  
+      <%= render "locations/location", locals: {location: @location} %>
+  
+  
   <% end %>
-
-    <%= render "locations/location", locals: {location: @location} %>
-
-
-<% end %>
+  
+  </div>
     
 
 <!-- main code -->
