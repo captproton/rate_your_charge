@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "app-modal" do %>
-  <div class="app-modal">
+  <div class="app-modal max-h-screen overflow-y-auto">
     <%= link_to "#", 
     class:  "absolute top-0 right-0 z-10 bg-white rounded-full p-2",
     data: {controller: "modals", action: "modals#close"} do %>
