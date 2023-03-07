@@ -1,18 +1,192 @@
-<div class="super-container">
-  <div id="content-container">
-    <header>
-        <%= render partial: "locations/autocomplete" %>
-	  </header>
-    <div class="locations">
-      <% @locations.each do |location| %>
-        <%= render "location_summary", location: location %>
+<!-- search box and results -->
+<%#= render "locations/search_and_show" %>
+<style>
+
+/* Locations container styles */
+.locations-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  margin: 20px;
+}
+
+/* Location list styles */
+.location-list {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.location-list h3 {
+  margin-top: 0;
+}
+
+.location-list ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.location-list li {
+  background-color: #f1f1f1;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.location-list li h4 {
+  margin-top: 0;
+}
+
+.location-list li p:last-of-type {
+  margin-bottom: 0;
+}
+
+.view-details-btn {
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+  float: right;
+}
+
+/* Location details styles */
+.location-details {
+  background-color: #f1f1f1;
+  padding: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+
+}
+
+.location-details img {
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
+
+.location-details .navbar {
+  background-color: #4CAF50;
+  color: white;
+  padding: 10px;
+  position: sticky;
+  top: 0;
+  z-index: 1;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.location-details .navbar h3 {
+  margin: 0;
+}
+
+.close-details-btn {
+  background-color: #f44336;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.reviews {
+  margin-top: 20px;
+}
+
+.reviews .overall-rating {
+  font-size: 24px;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+.review {
+  margin-bottom: 20px;
+}
+
+.review h4 {
+  margin-top: 0;
+}
+
+.review .rating {
+  font-weight: bold;
+  margin-bottom: 5px;
+}
+
+.review .comment {
+  margin-bottom: 0;
+}
+
+.photos {
+  margin-top: 20px;
+}
+
+.photos img {
+  width: 33.33%;
+  float: left;
+}
+
+/* Responsive styles */
+@media screen and (min-width: 768px) {
+  .locations-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "list details map-window";
+    gap: 20px;
+  }
+
+  .location-list {
+    grid-area: list;
+  }
+
+  .location-details {
+    grid-area: details;
+    margin-top: 0;
+  }
+}
+
+</style>
+  
+  <!-- try again -->
+
+  <div class="fixed top-0 left-0 w-full z-50">
+    <div class="relative z-50">
+      <!-- .locations-container content goes here -->
+      <div class="locations-container">
+        <%= turbo_frame_tag "app-modal" %>
+        
+        <div class="location-list">
+          <header>
+            <%= render partial: "locations/autocomplete" %>
+          </header>
+        <div class="locations max-h-screen overflow-y-auto">
+          <% @locations.each do |location| %>
+            <%= render "location_summary", location: location %>
+          <% end %>
+        </div>
+        </div>
+        
+        </div>
+      
+    </div>
+    <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
+      <!-- Map container goes here -->
+<!-- map -->
+      <% if params[:city].present? %>
+        <%= js_map @location_pins, height: "100vh"  %>
+      <% else %>
+        <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america.jpg") %>);"></div>
       <% end %>
+
     </div>
   </div>
-</div>
-<% if params[:city].present? %>
-  <%= js_map @location_pins, height: "100vh"  %>
-<% else %>
-  <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america.jpg") %>);"></div>
-<% end %>
   

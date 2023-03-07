@@ -1,5 +1,139 @@
-<div>
-  <h2><%= location.name %></h2>
-  <p><%= location.formatted_address %></p>
-  <!-- add any other details you want to display here -->
-</div>
+      <!-- start  -->
+        <div class="bg-gray-800 text-white relative ">
+          <div class="sticky top-0 z-10 p-2">
+        <%= link_to "#", 
+        class:  "absolute top-0 right-0 z-10 bg-white rounded-full p-2",
+        data: {controller: "modals", action: "modals#close"} do %>
+      
+        <svg  xmlns="http://www.w3.org/2000/svg" 
+        class="h-6 w-6 text-black" 
+        viewBox="0 0 20 20" 
+        fill="none" 
+        stroke="currentColor" 
+        stroke-width="2">
+        <path d="M5 5l10 10M15 5L5 15" />
+        </svg>
+        <% end %>
+        </div>
+        <div class="relative h-screen overflow-y-scroll">
+  
+      
+          <img  src="https://images.unsplash.com/photo-1607197109166-3ab4ee4b468f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="Hero Image" 
+                class="h-64 w-full object-cover">
+            
+        <div class="container mx-auto px-4 py-16">
+          <h2 class="text-3xl font-medium mb-4"><%= @location.name %></h2>
+          <%= render "locations/reviews_summary", location: @location %>
+          
+            <hr class="my-4"/>
+          
+          <div class="flex justify-between mb-8">
+            <a href="https://maps.google.com" class="btn bg-gray-600 text-white px-4 py-2">Get Directions</a>
+            <a href="#" class="btn bg-gray-600 text-white px-4 py-2">Save</a>
+            <a href="#" class="btn bg-gray-600 text-white px-4 py-2">Share</a>
+          </div>
+          
+            <hr class="my-4"/>
+          
+          <div class="charging-options">
+            <ul class="list-none">
+              <%= render "locations/charger_types/level_one_charger_count", location: @location    if !@location.level_one_charger_count.blank? %>
+              <%= render "locations/charger_types/level_two_charger_count", location: @location    if !@location.level_two_charger_count.blank? %>
+              <%= render "locations/charger_types/dc_fast_charger_count",   location: @location    if !@location.dc_fast_charger_count.blank? %>
+          
+              <!-- <li class="flex items-center justify-between mb-2">
+                  <div class="flex items-center">
+                    <i class="fa fa-bolt mr-2 text-gray-400"></i>
+                    <div class="flex">
+                      <div>J1772</div>
+                      <div class="ml-2">6.48 kW</div>
+                    </div>
+                  </div>
+                  <div>Total 28</div>
+                </li> -->
+                <!-- repeat for example
+               -->
+                <!-- <li class="flex items-center justify-between mb-2">
+                  <div class="flex items-center">
+                    <i class="fa fa-bolt mr-2 text-gray-400"></i>
+                    <div class="flex">
+                      <div>CHAdeMO</div>
+                      <div class="ml-2">50 kW</div>
+                    </div>
+                  </div>
+                  <div>Total 12</div>
+                </li>
+                <li class="flex items-center justify-between mb-2">
+                  <div class="flex items-center">
+                    <i class="fa fa-bolt mr-2 text-gray-400"></i>
+                    <div class="flex">
+                      <div>Tesla Supercharger</div>
+                      <div class="ml-2">120 kW</div>
+                    </div>
+                  </div>
+                  <div>Total 8</div>
+                </li> -->
+                    </ul>
+          </div>
+          
+            <hr class="my-4"/>
+          
+          <div class="addr-and-suggetions">
+            <div class="mb-2">
+              <%= @location.formatted_address %>
+            </div>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded">Suggest an Edit</button>
+            
+            
+          </div>
+          
+            <hr class="my-4"/>
+          
+          <div class="photos">
+            <h3 class="text-xl font-bold mb-4">Photos</h3>
+            <!-- <div class="relative w-full">
+              <a href="/photos" class="relative w-full">
+                <img src="https://images.unsplash.com/photo-1607197109166-3ab4ee4b468f?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8&auto=format&fit=crop&w=1770&q=80" alt="Placeholder image" class="w-full h-64 object-cover rounded mb-4">
+              </a>
+              <div class="absolute bottom-0 left-0 p-4 text-white bg-black opacity-75">
+                6 photos
+                <button class="bg-blue-500 text-white py-2 px-4 rounded mt-4">Add a photo</button>
+
+              </div>
+            </div>
+       -->
+          </div>
+      
+          <div class="reviews">
+            <%#= render reviews_summary(@location) %>
+            <%= render "reviews_summary" %>
+      <!--        -->
+          <div class="p-6">
+            <h2 class="text-lg font-medium mb-4 ">
+              Reviews
+              &nbsp;&nbsp;
+            </h2>
+            <div class="flex flex-wrap">
+              <% if @location.visits.count > 0 %>
+
+                <% 3.times do |i| %>
+                  <%= render "review" %>
+                <% end %>
+
+              <% else %>
+                <div class="text-gray-500">No reviews yet</div> 
+              <% end %>
+
+            </div>
+          </div>
+            
+      <!--        -->
+          </div>
+        </div>
+      </div>
+      
+      <!-- finish -->
+<!-- finish app-modal -->
+    
+
+<!-- main code -->

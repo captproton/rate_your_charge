@@ -1,13 +1,14 @@
+<h3 class="text-xl font-bold mb-4">Review Summary</h3>
 <div class="flex items-center mb-4">
-  <% if location.visits.count > 0 %>
+  <% if @location.visits.count > 0 %>
             <!--  -->
             <div class="parent reviews ">
               <!-- 1/3 rows -->
               <div class="div1 review-header bg-grey-500 font-bold">Review Summary </div>
               <!-- 2/3 rows -->
               <div class="div2 graph"> 
-                <%= bar_chart [["Up", location.cached_scoped_like_votes_up], 
-                                ["Down", location.cached_scoped_like_votes_down]], 
+                <%= bar_chart [["Up", @location.cached_scoped_like_votes_up], 
+                                ["Down", @location.cached_scoped_like_votes_down]], 
                               height: "100px" %>
               </div>
    
