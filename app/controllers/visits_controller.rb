@@ -14,6 +14,7 @@ class VisitsController < ApplicationController
   # GET /visits/new
   def new
     @visit = Visit.new
+    @location = Location.find(params[:location_id])
   end
 
   # GET /visits/1/edit

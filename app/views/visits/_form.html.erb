@@ -1,6 +1,15 @@
 
+<style>
+  .comment {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    margin-bottom: 10px;
+  }
+</style>
 
-<div class="max-w-screen-md mx-auto my-8">
+
+<div class="max-w-screen-md mx-auto my-8 ml-10 pl-10">
   <%= form_with(model: visit) do |form| %>
     <% if visit.errors.any? %>
       <div class="alert alert-error">
@@ -13,19 +22,32 @@
       </div>
     <% end %>
 
-    <div class="mb-6">
-      <%= form.label :location_id, class: 'label' %>
-      <%= form.text_field :location_id, class: 'input' %>
-    </div>
+      <%= form.hidden_field :location_id, value: params[:location_id] %>
 
-    <div class="form-group mb-6">
-      <%= form.label :vote_type, "Vote Type" %><br>
-      <%= form.radio_button :vote_type, "upvote" %>
-      <%= form.label :vote_type_upvote, "Upvote" %><br>
-      <%= form.radio_button :vote_type, "downvote" %>
-      <%= form.label :vote_type_downvote, "Downvote" %>
-    </div>
-
+      <div class="form-group mb-6">
+        <%= form.label :vote_type, "Vote Type" %><br>
+        <div class="flex items-center">
+          <div class="upvote mr-4">
+            <%= form.radio_button :vote_type, "upvote" %>
+            <%= form.label :vote_type_upvote do%>
+              <i class="fas fa-thumbs-up fa-2x fa-lg"></i>
+            <% end %>
+          </div>
+          <div class="downvote mr-4">
+            <%= form.radio_button :vote_type, "downvote" %>
+            <%= form.label :vote_type_downvote do %>
+              <i class="fas fa-thumbs-down fa-2x fa-lg"></i>
+            <% end %>  
+          </div>
+          <div class="phrase text-black border">
+            What was your overall experience?
+          </div>
+        </div>
+      </div>
+      <div class="form-group mb-6">
+        <%= form.label :comment, "Comment" %>
+        <%= form.text_area :comment, class: "form-control bg-white border-2 border-gray-300 rounded-md px-4 py-2 outline-4" %>
+      </div>
     <div class="mb-6">
       <% if visit.persisted? %>
         <div class="float-right">
@@ -33,12 +55,25 @@
         </div>
       <% end %>
 
-      <%= form.submit class: 'button button-primary rounded-md px-4 py-2 mr-2 bg-blue-700 text-white' %>
+      <%= form.submit class: 'button button-primary rounded-md px-4 py-2 mr-2 bg-blue-700 text-white',
+                      value: 'Share your vote'
+      %>
 
       <% if visit.persisted? %>
-        <%= link_to "Cancel", visit, class: "button button-secondary" %>
+        <%#= link_to "Cancel", visit, class: "button button-secondary" %>
+        <%= link_to "#", 
+                    class:  "p-2 text-blue-500",
+                    data: {controller: "modals", action: "modals#close"} do %>
+          Cancel
+        <% end %>
       <% else %>
-        <%= link_to "Cancel", visits_path, class: "button button-secondary" %>
+        <%#= link_to "Cancel", visits_path, class: "button button-secondary" %>
+        <%= link_to "#", 
+                    class:  "p-2 text-blue-500",
+                    data: {controller: "modals", action: "modals#close"} do %>
+          Cancel
+        <% end %>
+
       <% end %>
     </div>
   <% end %>

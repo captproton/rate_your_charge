@@ -4,6 +4,12 @@
 
 import { application } from "./application"
 
+import DialogmodalController from "./dialogmodal_controller"
+application.register("dialogmodal", DialogmodalController)
+
+import DrawerController from "./drawer_controller"
+application.register("drawer", DrawerController)
+
 import EditableController from "./editable_controller"
 application.register("editable", EditableController)
 
