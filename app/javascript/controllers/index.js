@@ -4,9 +4,6 @@
 
 import { application } from "./application"
 
-import DialogmodalController from "./dialogmodal_controller"
-application.register("dialogmodal", DialogmodalController)
-
 import DrawerController from "./drawer_controller"
 application.register("drawer", DrawerController)
 
@@ -24,3 +21,6 @@ application.register("locationsearch", LocationsearchController)
 
 import ModalsController from "./modals_controller"
 application.register("modals", ModalsController)
+
+import VisitDialogController from "./visit_dialog_controller"
+application.register("visit-dialog", VisitDialogController)

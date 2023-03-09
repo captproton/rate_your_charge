@@ -1,0 +1,12 @@
+<div class="success bg-blue-800">
+    <h1>you did it!</h1>
+    <div class="back">
+        <%= link_to "Cancel",
+                     "#",
+                     data: {controller: "modals", action: "modals#close"},
+                     class: "cancel-button" %>
+    </div>
+    <div class="page-header">
+        <h1>Success</h1>
+    </div>
+</div>

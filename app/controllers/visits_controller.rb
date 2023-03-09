@@ -21,18 +21,41 @@ class VisitsController < ApplicationController
   def edit
   end
 
+  # 
+  def create
+    @visit = @location.visits.build(visit_params)
+
+    if @visit.save
+      respond_to do |format|
+        format.turbo_stream { render turbo_stream: turbo_stream.append(
+          :visit_list,
+          partial: "visits/visit",
+          locals: { visit: @visit }
+        ) }
+      end
+    else
+      render "locations/show"
+    end
+  end
   # POST /visits or /visits.json
   def create
     return unless %w[upvote downvote].include?(visit_params[:vote_type])
     return if visit_params[:location_id].blank?
     # @location = Location.find(params[:location_id])
-    @location = Location.find(visit_params[:location_id]) || Location.last
-    @visit = @location.visits.create!(location: @location, user: current_user)
+    @location = Location.find(visit_params[:location_id])
+    @visit    = @location.visits.build
     
     respond_to do |format|
       if @visit.vote!(visit_params[:vote_type], current_user)
         format.html { redirect_to visit_url(@visit), notice: "Visit was successfully created." }
         format.json { render :show, status: :created, location: @visit }
+        format.turbo_stream do
+          render turbo_stream:
+            turbo_stream.update("modal",
+            partial: "/visits/visit_modal",
+            locals: { location: @location, visit: @visit }
+            )
+        end
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
@@ -71,6 +94,6 @@ class VisitsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def visit_params
-      params.require(:visit).permit(:user_id, :location_id, :vote_type)
+      params.require(:visit).permit(:user_id, :location_id, :vote_type, :comment)
     end
 end

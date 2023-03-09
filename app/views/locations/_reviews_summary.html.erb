@@ -2,62 +2,40 @@
   <!-- start new dialog -->
   <div class="flex items-center mb-4">
     now is the time <br />
-
-    <div data-controller="modal">
-
-        <%= link_to new_visit_path(location_id: @location.id), 
-                    data:  {turbo_frame: "app-modal"}, 
-                    class: "bg-grey-700 text-current border border-current rounded-md" do %>  
-          Open modal
-        <% end %>
-    </div>
     
   </div>
   <!-- finish new dialog -->
 <div class="flex items-center mb-4">
+  <% @visit = @location.visits.build %>
   <% if @location.visits.count > 0 %>
-            <div class="parent reviews ">
-              <!-- 1/3 rows -->
-              <div class="div1 review-header bg-grey-500 font-bold">Review Summary </div>
-              <!-- 2/3 rows -->
-              <div class="div2 graph"> 
-                <%= bar_chart [["Up", @location.cached_scoped_like_votes_up], 
-                                ["Down", @location.cached_scoped_like_votes_down]], 
-                              height: "100px" %>
-              </div>
-   
-              <div class="div3 score"> 
-                <div class="text-6xl font-bold text-center">1.0</div>
-                <div class="text-center text-gray-600 text-lg mt-2">
-                  <a href="#" class="underline">1 review</a>
-                </div>    
-              </div>
-              <!-- 3/3rows -->
-              <div class="div4 flex justify-center bottom-row">
-                <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded relative" style="margin: auto ">
-                  <span class="fa-stack fa-lg absolute top-0 right-0">
-                    <i class="fa fa-square-o fa-stack-2x"></i>
-                    <i class="fa fa-pencil fa-stack-1x"></i>
-                  </span>
-                  Write a Review
-                </button>
-              </div>
-            </div> 
+    <div class="parent reviews ">
+      <!-- 1/3 rows -->
+      <div class="div1 review-header bg-grey-500 font-bold">Review Summary </div>
+      <!-- 2/3 rows -->
+      <div class="div2 graph"> 
+        <%= bar_chart [["Up", @location.cached_scoped_like_votes_up], 
+                        ["Down", @location.cached_scoped_like_votes_down]], 
+                      height: "100px" %>
+      </div>
+
+      <div class="div3 score"> 
+        <div class="text-6xl font-bold text-center">1.0</div>
+        <div class="text-center text-gray-600 text-lg mt-2">
+          <a href="#" class="underline">1 review</a>
+        </div>    
+      </div>
+      <!-- 3/3rows -->
+      <div class="div4 flex justify-center bottom-row">
+        <%= render "locations/visits/button_and_dialog" %>
+      </div>
+    </div> 
   <% else %>
     <div class="grid grid-cols-1 gap-y-4">
       <div class="flex items-left justify-left">
         <p class="text-left">No reviews.  Be the first!</p>
       </div>
       <div class="flex items-center justify-center">
-        <%= link_to new_visit_path(location_id: @location.id), 
-                    data:  {turbo_frame: "app-modal"}, 
-                    class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded relative" do %>  
-          <span class="fa-stack fa-lg absolute top-0 right-0">
-            <i class="fa fa-square-o fa-stack-2x"></i>
-            <i class="fa fa-pencil fa-stack-1x"></i>
-          </span>
-          Write a Review
-        <% end %>
+        <%= render "locations/visits/button_and_dialog" %>
 
       </div>
     </div>

@@ -22,14 +22,13 @@
             
         <div class="container mx-auto px-4 py-16">
           <h2 class="text-3xl font-medium mb-4"><%= @location.name %></h2>
-          <%= render "locations/reviews_summary", location: @location %>
           
             <hr class="my-4"/>
           
           <div class="flex justify-between mb-8">
-            <a href="https://maps.google.com" class="btn bg-gray-600 text-white px-4 py-2">Get Directions</a>
-            <a href="#" class="btn bg-gray-600 text-white px-4 py-2">Save</a>
-            <a href="#" class="btn bg-gray-600 text-white px-4 py-2">Share</a>
+            <a href="https://maps.google.com" class="btn bg-gray-600 text-white px-4 py-2" style="opacity: 0.3">Get Directions</a>
+            <a href="#" class="btn bg-gray-600 text-white px-4 py-2" style="opacity: 0.3">Save</a>
+            <a href="#" class="btn bg-gray-600 text-white px-4 py-2" style="opacity: 0.3">Share</a>
           </div>
           
             <hr class="my-4"/>
@@ -48,7 +47,9 @@
             <div class="mb-2">
               <%= @location.formatted_address %>
             </div>
-            <button class="bg-blue-500 text-white py-2 px-4 rounded">Suggest an Edit</button>
+            <button class="bg-blue-500 text-white py-2 px-4 rounded" style="opacity: 0.3">
+              Suggest an Edit
+            </button>
           </div>
           
           <hr class="my-4"/>

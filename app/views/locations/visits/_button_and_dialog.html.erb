@@ -1,0 +1,121 @@
+<!-- old link -->
+<%#= link_to new_visit_path(location_id: @location.id), 
+data:  {turbo_frame: "app-modal"}, 
+class: "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded relative" do %>  
+<!-- <span class="fa-stack fa-lg absolute top-0 right-0">
+<i class="fa fa-square-o fa-stack-2x"></i>
+<i class="fa fa-pencil fa-stack-1x"></i>
+</span>
+Write a Review -->
+<%# end %>
+
+<!-- add visit start -->
+  <div data-controller="visit-dialog" >
+    <% @visit = @location.visits.build %>
+    <!-- Add a button to open the dialog -->
+    <button data-action="click->visit-dialog#openDialog" 
+            class= "bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded relative"  
+        >
+      <span class="fa-stack fa-lg absolute top-0 right-0">
+        <i class="fa fa-square-o fa-stack-2x"></i>
+        <i class="fa fa-pencil fa-stack-1x"></i>
+      </span>
+      Add your voice
+    </button>
+
+    
+
+  <!-- Dialog element -->
+  <dialog class="center-modal border" 
+          id="modal" 
+          data-visit-dialog-target="dialog";"
+    >
+    <div class="header">
+        <h1 class="text-center text-black border-b-4 border-grey-800 ">
+            <%= @location.name %>
+        </h1>
+    </div>
+    <div class="content text-black">
+      <div class="flex justify-between">
+        <div class="close" data-action="click->visit-dialog#closeDialog">
+          <i class="fas fa-times fa-lg"></i>
+        </div>
+      </div>
+          <!-- Dialog content goes here -->
+
+    <div class="max-w-screen-md mx-auto my-8 ml-10 pl-10">
+        <%= form_with(model: @visit) do |form| %>
+          <% if @visit.errors.any? %>
+            <div class="alert alert-error">
+              <h2><%= pluralize(@visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
+              <ul>
+              <% @visit.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+      
+            <input type="hidden" name="visit[location_id]" value="<%= @location.id %>">
+            <!-- <div class="form-group mb-6">
+                <%= form.label :vote_type, "Vote Type" %><br>
+                <div class="flex items-center">
+                  <div class="upvote mr-4">
+                    <%= form.radio_button :vote_type, "upvote" %>
+                    <%= form.label :vote_type_upvote do%>
+                      <i class="fas fa-thumbs-up fa-2x fa-lg"></i>
+                    <% end %>
+                  </div>
+                  <div class="downvote mr-4">
+                    <%= form.radio_button :vote_type, "downvote" %>
+                    <%= form.label :vote_type_downvote do %>
+                      <i class="fas fa-thumbs-down fa-2x fa-lg"></i>
+                    <% end %>  
+                  </div>
+                  <div class="phrase text-black border">
+                    What was your overall experience?
+                  </div>
+                </div>
+              </div> -->
+        
+            <div class="form-group mb-6">
+              <%= form.label :comment, "Comment" %>
+              <%= form.text_area :comment, class: "form-control bg-white border-2 border-gray-300 rounded-md px-4 py-2 outline-4" %>
+            </div>
+          <div class="mb-6">
+            <% if @visit.persisted? %>
+              <div class="float-right">
+                <%= link_to 'Destroy', @visit, method: :delete, class: "text-red-600 hover:text-red-800", data: { confirm: 'Are you sure?' } %>
+              </div>
+            <% end %>
+      
+            <%= form.submit class: 'button button-primary rounded-md px-4 py-2 mr-2 bg-blue-700 text-white',
+                            value: 'Share your voice'
+            %>
+      
+            <% if @visit.persisted? %>
+              <%#= link_to "Cancel", @visit, class: "button button-secondary" %>
+              <%= link_to "#", 
+                          class:  "p-2 text-blue-500",
+                          data: {controller: "visit-dialog", action: "visit-dialog#closeDialog"} do %>
+                Cancel
+              <% end %>
+      
+            <% else %>
+              <%#= link_to "Cancel", visits_path, class: "button button-secondary" %>
+              <%= link_to "#", 
+                          class:  "p-2 text-blue-500",
+                          data: {controller: "visit-dialog", action: "visit-dialog#closeDialog"} do %>
+                Cancel
+              <% end %>
+      
+            <% end %>
+          </div>
+        <% end %>
+      </div>
+      
+    </div>
+  </dialog>
+</div>
+
+  <!-- add visit finish -->
