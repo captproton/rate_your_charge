@@ -4,12 +4,14 @@ RSpec.describe "visits/index", type: :view do
   before(:each) do
     assign(:visits, [
       Visit.create!(
-        user: nil,
-        location: nil
+        comment: "MyText",
+        user_id: 2,
+        location_id: 3
       ),
       Visit.create!(
-        user: nil,
-        location: nil
+        comment: "MyText",
+        user_id: 2,
+        location_id: 3
       )
     ])
   end
@@ -17,7 +19,8 @@ RSpec.describe "visits/index", type: :view do
   it "renders a list of visits" do
     render
     cell_selector = Rails::VERSION::STRING >= '7' ? 'div>p' : 'tr>td'
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
-    assert_select cell_selector, text: Regexp.new(nil.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new("MyText".to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(2.to_s), count: 2
+    assert_select cell_selector, text: Regexp.new(3.to_s), count: 2
   end
 end

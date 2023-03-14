@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe "visits/new", type: :view do
   before(:each) do
     assign(:visit, Visit.new(
-      user: nil,
-      location: nil
+      comment: "MyText",
+      user_id: 1,
+      location_id: 1
     ))
   end
 
@@ -12,6 +13,8 @@ RSpec.describe "visits/new", type: :view do
     render
 
     assert_select "form[action=?][method=?]", visits_path, "post" do
+
+      assert_select "textarea[name=?]", "visit[comment]"
 
       assert_select "input[name=?]", "visit[user_id]"
 

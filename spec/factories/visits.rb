@@ -1,6 +1,7 @@
 FactoryBot.define do
   factory :visit do
-    user { nil }
-    location { nil }
+    comment { "MyText" }
+    user_id { 1 }
+    location_id { 1 }
   end
 end

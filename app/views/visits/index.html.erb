@@ -19,6 +19,7 @@
       <tr>
     
 
+            <th>Comment</th>
             <th>User</th>
             <th>Location</th>
             
@@ -32,8 +33,9 @@
         <%= content_tag :tr, id: dom_id(visit), class: dom_class(visit) do %>
           
 
-                      <td><%= visit.user.first_name %></td>
-                      <td><%= visit.location.name %></td>
+                      <td><%= visit.comment %></td>
+                      <td><%= visit.user_id %></td>
+                      <td><%= visit.location_id %></td>
           
           
             <td><%= link_to 'Show', visit %></td>

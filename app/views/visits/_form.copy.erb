@@ -1,0 +1,37 @@
+<%= form_with(model: visit) do |form| %>
+  <% if visit.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(visit.errors.count, "error") %> prohibited this visit from being saved:</h2>
+
+      <ul>
+      <% visit.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="mb-3">
+    <%= form.label :comment, class: 'form-label' %>
+      <%= form.text_area :comment, class: 'form-control' %>
+    </div>
+
+
+      <%= form.hidden_field :location_id, value: params[:location_id]|| Location.last.id %>
+
+  <div class="mb-3">
+    <% if visit.persisted? %>
+      <div class="float-end">
+        <%= link_to 'Destroy', visit, method: :delete, class: "text-danger", data: { confirm: 'Are you sure?' } %>
+      </div>
+    <% end %>
+
+    <%= form.submit class: 'btn btn-primary' %>
+
+    <% if visit.persisted? %>
+      <%= link_to "Cancel", visit, class: "btn btn-link" %>
+    <% else %>
+      <%= link_to "Cancel", visits_path, class: "btn btn-link" %>
+    <% end %>
+  </div>
+<% end %>

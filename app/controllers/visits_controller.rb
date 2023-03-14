@@ -1,6 +1,5 @@
 class VisitsController < ApplicationController
-  before_action :authenticate_user!
-  before_action :set_visit, only: %i[ show edit update destroy ]
+  before_action :set_visit, only: %i[show edit update destroy]
 
   # GET /visits or /visits.json
   def index
@@ -8,54 +7,32 @@ class VisitsController < ApplicationController
   end
 
   # GET /visits/1 or /visits/1.json
-  def show
-  end
+  def show; end
 
   # GET /visits/new
   def new
     @visit = Visit.new
-    @location = Location.find(params[:location_id])
   end
 
   # GET /visits/1/edit
-  def edit
-  end
+  def edit; end
 
-  # 
-  def create
-    @visit = @location.visits.build(visit_params)
-
-    if @visit.save
-      respond_to do |format|
-        format.turbo_stream { render turbo_stream: turbo_stream.append(
-          :visit_list,
-          partial: "visits/visit",
-          locals: { visit: @visit }
-        ) }
-      end
-    else
-      render "locations/show"
-    end
-  end
   # POST /visits or /visits.json
   def create
-    return unless %w[upvote downvote].include?(visit_params[:vote_type])
-    return if visit_params[:location_id].blank?
-    # @location = Location.find(params[:location_id])
-    @location = Location.find(visit_params[:location_id])
-    @visit    = @location.visits.build
-    
+    @visit = current_user.visits.new(visit_params)
+
     respond_to do |format|
-      if @visit.vote!(visit_params[:vote_type], current_user)
-        format.html { redirect_to visit_url(@visit), notice: "Visit was successfully created." }
+      if @visit.save
+        format.html { redirect_to visit_url(@visit), notice: 'Visit was successfully created.' }
         format.json { render :show, status: :created, location: @visit }
         format.turbo_stream do
-          render turbo_stream:
-            turbo_stream.update("modal",
-            partial: "/visits/visit_modal",
-            locals: { location: @location, visit: @visit }
-            )
+          render turbo_stream: turbo_stream.replace(
+            :visitform,
+            partial: 'visits/visit',
+            locals: { visit: @visit }
+          )
         end
+
       else
         format.html { render :new, status: :unprocessable_entity }
         format.json { render json: @visit.errors, status: :unprocessable_entity }
@@ -67,7 +44,7 @@ class VisitsController < ApplicationController
   def update
     respond_to do |format|
       if @visit.update(visit_params)
-        format.html { redirect_to visit_url(@visit), notice: "Visit was successfully updated." }
+        format.html { redirect_to visit_url(@visit), notice: 'Visit was successfully updated.' }
         format.json { render :show, status: :ok, location: @visit }
       else
         format.html { render :edit, status: :unprocessable_entity }
@@ -81,19 +58,20 @@ class VisitsController < ApplicationController
     @visit.destroy
 
     respond_to do |format|
-      format.html { redirect_to visits_url, notice: "Visit was successfully destroyed." }
+      format.html { redirect_to visits_url, notice: 'Visit was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_visit
-      @visit = Visit.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def visit_params
-      params.require(:visit).permit(:user_id, :location_id, :vote_type, :comment)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_visit
+    @visit = Visit.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def visit_params
+    params.require(:visit).permit(:comment, :user_id, :location_id)
+  end
 end
