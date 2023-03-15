@@ -7,7 +7,7 @@ class Visit < ApplicationRecord
   validates :location, presence: true
   validates :comment, presence: true
 
-  #   acts_as_votable
+  acts_as_votable
 
   #    # upvote or remove vote
   #   def upvote!(user)
