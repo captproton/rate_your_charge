@@ -22,5 +22,8 @@ application.register("locationsearch", LocationsearchController)
 import ModalsController from "./modals_controller"
 application.register("modals", ModalsController)
 
+import TurbomodalController from "./turbomodal_controller"
+application.register("turbomodal", TurbomodalController)
+
 import VisitDialogController from "./visit_dialog_controller"
 application.register("visit-dialog", VisitDialogController)

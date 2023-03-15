@@ -7,18 +7,30 @@
   </div>
 
   <div class="col-sm-6 text-end">
-  <%= link_to new_visit_path, class: 'btn btn-primary' do %>
+    <!-- modal: visit start -->    
+  <%= link_to new_visit_path, data: {turbo_frame: "modal"}, class: 'btn btn-primary' do %>
     Add New Visit
   <% end %>
+    <!-- modal: visit finish -->
+  
   </div>
 </div>
 
+<h2>Visits</h2>
+  <div id="visits">
+      <% @visits.each do |visit| %>
+        <%= render visit %>
+        <hr>
+      <% end %>
+
+  </div>
 <div class="table-responsive">
   <table class="table table-striped table-bordered table-hover">
     <thead>
       <tr>
     
 
+            <th>ID</th>
             <th>Comment</th>
             <th>User</th>
             <th>Location</th>
@@ -33,6 +45,7 @@
         <%= content_tag :tr, id: dom_id(visit), class: dom_class(visit) do %>
           
 
+                      <td><%= visit.id %></td>
                       <td><%= visit.comment %></td>
                       <td><%= visit.user_id %></td>
                       <td><%= visit.location_id %></td>

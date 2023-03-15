@@ -3,7 +3,7 @@ class VisitsController < ApplicationController
 
   # GET /visits or /visits.json
   def index
-    @visits = Visit.all
+    @visits = Visit.all.order(created_at: :desc).first(10)
   end
 
   # GET /visits/1 or /visits/1.json
@@ -26,8 +26,8 @@ class VisitsController < ApplicationController
         format.html { redirect_to visit_url(@visit), notice: 'Visit was successfully created.' }
         format.json { render :show, status: :created, location: @visit }
         format.turbo_stream do
-          render turbo_stream: turbo_stream.replace(
-            :visitform,
+          render turbo_stream: turbo_stream.prepend(
+            :visits,
             partial: 'visits/visit',
             locals: { visit: @visit }
           )

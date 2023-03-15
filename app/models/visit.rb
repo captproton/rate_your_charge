@@ -4,7 +4,8 @@ class Visit < ApplicationRecord
   #   has_many :votes, as: :votable
 
   #   validates :user, presence: true
-  #   validates :location, presence: true
+  validates :location, presence: true
+  validates :comment, presence: true
 
   #   acts_as_votable
 
