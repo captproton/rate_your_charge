@@ -1,4 +1,4 @@
-<div id="<%= dom_id visit %>">
+<div id="<%= dom_id visit %>" class="border-b-4 border-gray-500">
   <p>
     <strong>Comment:</strong>
     <%= visit.comment %>
@@ -14,4 +14,10 @@
     <%= visit.location_id %>
   </p>
 
+  <p>
+    upvotes: <%= visit.votes_for.up.count%>
+  </p>
+  <p>
+    downvotes: <%= visit.votes_for.down.count%>
+  </p>
 </div>
