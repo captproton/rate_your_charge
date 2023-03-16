@@ -1,18 +1,3 @@
-
-<style>
-  .comment {
-    border: 1px solid #ccc;
-    border-radius: 5px;
-    padding: 10px;
-    margin-bottom: 10px;
-  }
-</style>
-
-
-        <div class="fixed inset-0 flex items-center justify-center z-50">
-        <div class="fixed inset-0 bg-gray-500 opacity-75"></div>
-        <div class="relative bg-white w-1/2 md:w-1/3 lg:w-1/4 p-6 rounded-lg">
-            <!-- Modal content goes here -->
   <%= form_with(model: visit) do |form| %>
     <% if visit.errors.any? %>
       <div class="alert alert-error">
