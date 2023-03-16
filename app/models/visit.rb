@@ -5,7 +5,7 @@ class Visit < ApplicationRecord
 
   #   validates :user, presence: true
   validates :location, presence: true
-  validates :comment, presence: true
+  # validates :comment, presence: true
 
   acts_as_votable
 

@@ -26,7 +26,13 @@
       </div>
       <!-- 3/3rows -->
       <div class="div4 flex justify-center bottom-row">
-        <%= render "locations/visits/button_and_dialog" %>
+        <%#= render "locations/visits/button_and_dialog" %>
+        <!-- modal: visit start -->    
+        <%= link_to new_visit_path(:foo => "bar", :baz => "quux"), data: {turbo_frame: "modal"}, class: 'btn btn-primary' do %>
+          Add New Visit
+        <% end %>
+        <!-- modal: visit finish -->
+        
       </div>
     </div> 
   <% else %>
@@ -35,7 +41,14 @@
         <p class="text-left">No reviews.  Be the first!</p>
       </div>
       <div class="flex items-center justify-center">
-        <%= render "locations/visits/button_and_dialog" %>
+        <%#= render "locations/visits/button_and_dialog" %>
+        <!-- modal: visit start -->    
+                <%= link_to new_visit_path(:location_id => @location.id), data: {turbo_frame: "modal"}, class: 'btn btn-primary' do %>
+
+        <%#= link_to new_visit_path, data: {turbo_frame: "modal"}, class: 'btn btn-primary' do %>
+          Add New Visit
+        <% end %>
+        <!-- modal: visit finish -->
 
       </div>
     </div>
