@@ -45,7 +45,7 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: 'dashboard#show', as: :user_root
+    root to: 'locations#index', as: :user_root
     # Alternate route to use if logged in users should still see public root
     # get "/dashboard", to: "dashboard#show", as: :user_root
   end

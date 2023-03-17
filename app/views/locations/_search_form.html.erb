@@ -1,44 +1,13 @@
+
 <nav class="bg-white rounded-lg shadow-lg px-4 py-2 flex items-center justify-between max-w-screen-sm">  
-  <!-- Hamburger button -->    
-  <div class="dropdown" data-dropdown>
-    <button class="link" data-dropdown-button>
-      info
-    </button>
-    <div class="dropdown-menu information-grid">
-      <div>
-        <div class="dropdown-heading">Free Tutorials</div>
-        <div class="dropdown-links">
-          <a href="#" class="link">All</a>
-          <a href="#" class="link">Latest</a>
-          <a href="#" class="link">Popular</a>
+  <!-- Hamburger button -->
+        <div class="nav-dropdown">
+          <%= button_to  root_path, method: :delete, class: "dropdown-item" do %>
+            <span class="fa-solid fa-house"></span>
+          <% end %>
         </div>
-      </div>
-      <div>
-        <div class="dropdown-heading">New EV?</div>
-        <div class="dropdown-links">
-          <a href="#" class="link">Models</a>
-          <a href="#" class="link">Networks</a>
-        </div>
-      </div>
-      <div>
-        <div class="dropdown-heading">Blog</div>
-        <div class="dropdown-links">
-          <a href="#" class="link">All</a>
-          <a href="#" class="link">Latest</a>
-          <a href="#" class="link">Popular</a>
-        </div>
-      </div>
-      <div>
-        <div class="dropdown-heading">Other</div>
-        <div class="dropdown-links">
-          <a href="#" class="link">Twitter</a>
-          <a href="#" class="link">Newsletter</a>
-          <a href="#" class="link">Discord</a>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- Search form -->
+
+  <!-- Search form -->
   <div id="search-form" style "z-index: 1000;" >
   <%= form_with url: search_locations_path, class: "flex-grow ml-4", method: :post do |form| %>
     <%= form.search_field :search,
@@ -55,13 +24,20 @@
   <!-- User icon -->
  
   <div class="relative inline-block text-left">
-    <%= link_to "/user_links", data:  {turbo_frame: "app-modal"} do %>
-      <div class="text-gray-700 text-sm mr-2">
-        me
-        <!-- <i class="fa-regular fa-circle-user"></i> -->
-      </div>
+    <% if user_signed_in? %>
+      <%= button_to destroy_user_session_path, method: :delete, class: "dropdown-item" do %>
+        <span class="fa-solid fa-right-from-bracket"></span>
+      <% end %>
+
+
+    <% else %>
+          <%= link_to new_user_session_path, class: "nav-link" do %>
+            <i class="fa-solid fa-right-to-bracket"></i>
+          <% end %>
+
     <% end %>
 
+    
   </div>
 </nav>
 
