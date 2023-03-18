@@ -168,11 +168,13 @@
           <header>
             <%= render partial: "locations/autocomplete" %>
           </header>
-        <div class="locations max-h-screen overflow-y-auto">
-          <% @locations.each do |location| %>
-            <%= render "location_summary", location: location %>
+          <% if @locations.present? %>
+            <div class="locations max-h-screen overflow-y-auto">
+              <% @locations.each do |location| %>
+                <%= render "location_summary", location: location %>
+              <% end %>
+            </div>
           <% end %>
-        </div>
         </div>
         
         </div>
@@ -181,12 +183,11 @@
     <div class="absolute top-0 left-0 w-full h-full pointer-events-none">
       <!-- Map container goes here -->
 <!-- map -->
-      <% if params[:city].present? %>
+      <% if @locations.present? %>      
         <%= js_map @location_pins, height: "100vh"  %>
-      <% else %>
-        <div id="image" style="background-image: url(<%= image_path("nrel_charging_stations-north_america.jpg") %>);"></div>
+        <% else %>
+        <%= js_map @location_pins, zoom: 10, controls: true, height: "100vh"  %>
       <% end %>
-
     </div>
   </div>
   

@@ -19,6 +19,9 @@ application.register("location-search", LocationSearchController)
 import LocationsearchController from "./locationsearch_controller"
 application.register("locationsearch", LocationsearchController)
 
+import MapboxController from "./mapbox_controller"
+application.register("mapbox", MapboxController)
+
 import ModalsController from "./modals_controller"
 application.register("modals", ModalsController)
 
