@@ -16,7 +16,7 @@ import "./controllers"
 // start mapkick with mapbox
 import "mapkick/bundle"
 
-// start cheartkick
+// start chartkick
 import "chartkick/chart.js"
 
 // dropdown for locations
