@@ -354,6 +354,11 @@ cssesc@^3.0.0:
   resolved "https://registry.yarnpkg.com/cssesc/-/cssesc-3.0.0.tgz#37741919903b868565e1c09ea747445cd18983ee"
   integrity sha512-/Tb/JcjK111nNScGob5MNtsntNM1aCNUDipB/TkwZFhyDrrE47SOx/18wF2bbjgc3ZzCSKW1T5nt5EbFoAz/Vg==
 
+current.js@^0.1.0:
+  version "0.1.0"
+  resolved "https://registry.yarnpkg.com/current.js/-/current.js-0.1.0.tgz#d2a924fe7a04cea76fdc64e71787e63d77201b41"
+  integrity sha512-ORX/Sz6/whRLQ4/vbflddn1Lbqq+hU/PIzfVYumcD+JKqLJwWEgF4PHe6SZuwbgl5pAOWpK8nD4keT+GDrA5Yg==
+
 daisyui@^2.51.0:
   version "2.51.0"
   resolved "https://registry.yarnpkg.com/daisyui/-/daisyui-2.51.0.tgz#7ed95786a27a4ea044f14dc6b1423f98acb213bc"

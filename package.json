@@ -11,6 +11,7 @@
     "autoprefixer": "^10.4.13",
     "chart.js": "^4.2.1",
     "chartkick": "^5.0.1",
+    "current.js": "^0.1.0",
     "daisyui": "^2.51.0",
     "esbuild": "^0.17.5",
     "esbuild-rails": "^1.0.3",
