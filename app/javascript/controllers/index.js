@@ -10,6 +10,9 @@ application.register("drawer", DrawerController)
 import EditableController from "./editable_controller"
 application.register("editable", EditableController)
 
+import GeolocationController from "./geolocation_controller"
+application.register("geolocation", GeolocationController)
+
 import HelloController from "./hello_controller"
 application.register("hello", HelloController)
 
