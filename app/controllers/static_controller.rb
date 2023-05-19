@@ -1,5 +1,6 @@
 class StaticController < ApplicationController
   def index
+    @benefits = Benefit.visible
   end
 
   def about
@@ -18,4 +19,5 @@ class StaticController < ApplicationController
 
   def privacy
   end
+  
 end

@@ -1,6 +1,7 @@
 require 'sidekiq/web'
 
 Rails.application.routes.draw do
+  resources :benefits
   resources :visits do
     member do
       patch 'like', to: 'visits#like'
@@ -51,7 +52,7 @@ Rails.application.routes.draw do
   end
 
   # Public marketing homepage
-  root to: 'locations#index'
+  root to: 'static#index'
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
   # Defines the root path route ("/")

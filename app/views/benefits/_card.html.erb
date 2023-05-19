@@ -1,0 +1,43 @@
+<% image_name_root = "flyover_fallback__f5cucsfkt36u" %>
+
+<div class="tile <%= benefit.keyword.downcase %> ml-full half animate appear" data-tile-id="<%= benefit.keyword.downcase %>" data-tile-type="tile-flip" data-component-list="TriggerAnimation" data-analytics-section-engagement="name:<%= benefit.keyword.downcase %>" tabindex="0" style="transition-delay: 0.3s;">
+								<div class="front-face theme-">
+									<div class="tile-col-1">
+										<h2 class="typography-tiles-front-face-headline"><%= benefit.title %>.</h2>
+										<h3 class="typography-tiles-front-face-headline"><%= benefit.subtitle %></h3>
+									</div>
+									<div class="tile-col-2">
+										<picture id="overview-<%= benefit.keyword.downcase %>-fallback-1" class="overview-<%= benefit.keyword.downcase %>-fallback loaded" data-lazy="" data-picture-loaded="">
+											
+											<source srcset="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_small.jpg, https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_small_2x.jpg 2x" media="(max-width:734px)"><source srcset="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_medium.jpg, https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_medium_2x.jpg 2x" media="(max-width:1068px)"><source srcset="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_large.jpg, https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_large_2x.jpg 2x" media="(min-width:0px)"><img src="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_large.jpg" onload="__lp(event)" alt="">
+										</picture>
+										<noscript>
+															<picture class="overview-flyover-fallback">
+																<source srcset="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_small.jpg, https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_small_2x.jpg 2x" media="(max-width:734px)" /><source srcset="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_medium.jpg, https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_medium_2x.jpg 2x" media="(max-width:1068px)" /><source srcset="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_large.jpg, https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_large_2x.jpg 2x" media="(min-width:0px)" />
+																<img src="https://www.apple.com/v/maps/d/images/overview/<%= image_name_root %>_large.jpg" alt>
+															</picture>
+														</noscript>
+									</div>
+									<button class="icon-wrapper flip-tile-button open-tile " tabindex="-1" data-analytics-title="open tile - flyover" data-analytics-click="prop3:open tile - flyover" data-analytics-intrapage-link="">
+																	<i class="icon icon-plussolid" tabindex="0"></i>
+																	<span class="visuallyhidden">Open to read more about Flyover</span>
+																</button>
+								</div>
+								<div role="dialog" class="back-face flyover" aria-labelledby="headline-flyover">
+									<div class="content-column" data-component-list="CardbackScroll">
+										<div class="content-column-inner scroll">
+											<div class="top-gradient" style="display: none;"></div>
+											<div class="content-column-copy">
+												<h2 id="headline-flyover" tabindex="0" class="typography-tiles-back-face-headline backface-headline">Flyover</h2>
+												<p class="typography-tiles-back-face-copy backface-copy">Get a whole new perspective on select major metro areas with photo‑realistic, immersive 3D views. Move your iPhone or iPad through space to experience a city from above, or take a closer look at cities and their landmarks in high resolution as you zoom, pan, tilt, and rotate.<sup class="footnote footnote-number"><a href="#footnote-5" aria-label="Footnote 5">5</a></sup> It’s exploration elevated.</p>
+												<a href="/ios/feature-availability/#maps-flyover" data-analytics-title="see where flyover is available" class="icon-wrapper typography-tiles-back-face-copy back-face-link"><span class="icon-copy">See where Flyover is available</span><span class="icon icon-after more"></span></a>
+											</div>
+											<div class="bottom-gradient" style="display: block;"></div>
+										</div>
+									</div>
+									<button class="icon-wrapper flip-tile-button close-tile">
+																		<i class="icon icon-resetsolid"></i>
+																		<span class="visuallyhidden">Close</span>
+																	</button>
+								</div>
+							</div>
