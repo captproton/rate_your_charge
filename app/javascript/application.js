@@ -19,6 +19,11 @@ import "mapkick/bundle"
 // start chartkick
 import "chartkick/chart.js"
 
+// start actiontext
+import "trix"
+import "@rails/actiontext"
+
+
 // dropdown for locations
 document.addEventListener("click", e => {
     const isDropdownButton = e.target.matches("[data-dropdown-button]")
@@ -34,5 +39,4 @@ document.addEventListener("click", e => {
       if (dropdown === currentDropdown) return
       dropdown.classList.remove("active")
     })
-  })import "trix"
-import "@rails/actiontext"
+  })
