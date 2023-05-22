@@ -1,6 +1,7 @@
 class StaticController < ApplicationController
   def index
     @benefits = Benefit.visible
+    @value_props = @benefits.where.not("value_prop = ?", '')
   end
 
   def about
