@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en" >
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">    
+    <link rel="apple-touch-icon" type="image/png" href="https://cpwebassets.codepen.io/assets/favicon/apple-touch-icon-5ae1a0698dcc2402e9712f7d01ed509a57814f994c660df9f7a952f3060705ee.png" />
+    <meta name="apple-mobile-web-app-title" content="CodePen">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/favicon-aec34940fbc1a6e787974dcd360f2c6b63348d4b1f4e06c77743096d55480f33.ico" />
+    <link rel="mask-icon" type="image/x-icon" href="https://cpwebassets.codepen.io/assets/favicon/logo-pin-b4b4269c16397ad2f0f7a01bcdf513a1994f4c94b8af2f191c09eb0d601762b1.svg" color="#111" />
+    <title>CodePen - App store card 02</title>
+    <link rel="canonical" href="https://codepen.io/captproton/pen/OJBrXwj" />
+
+    <style>
+        :root {
+        font-size:15px;
+        font-family:Helvetica;
+        
+        --card-stack-width-number: 480;
+        --card-stack-width: calc(var(--card-stack-width-number) * 1px);
+        --card-width-number: 420;
+        --card-width: calc(var(--card-width-number) * 1px);
+        --card-height:280px;
+        --img-height:226px;
+        --img-height-expanded: 320px;
+        --card-stack-width-number:480;
+        --card-width-number:420;
+        
+        background-color:#333;
+        }
+
+        .card-stack {
+        width:var(--card-stack-width);
+        background-color:#eee;
+        margin:auto;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        min-height:100vh;
+        padding:1rem 0;
+        }
+
+        .card-stack.noscroll {
+        overflow:hidden;
+        
+        }
+
+        .card {
+        width:var(--card-width);
+        height:var(--card-height);
+        background-color:#fff;
+        
+        border-radius: 1rem;
+        box-shadow: 0 0.2rem 2rem rgba(0,0,0,0.1);
+        margin: 1rem 0;
+        
+        transition:all 0.3s cubic-bezier(0,1,0.95,1.05);
+        }
+
+        .card h4 {
+        text-transform: uppercase;
+        margin:0;
+        font-size:1.5rem;
+        font-weight:bold;
+        padding: 0.8rem 1.2rem;
+        line-height: 2rem;
+        letter-spacing:-0.5px;
+        padding-bottom:0;
+        background:#fff;
+        }
+
+        .card img {
+        display:block;
+        width:100%;
+        height:var(--img-height);
+        object-fit: cover;
+        
+        /*方便展开之后实施动画*/
+        border-top-left-radius: 1rem;
+        border-top-right-radius: 1rem;
+        }
+
+        /* 当点击展开时， 计算高度并套用到内层，动画设置到外层，这样关闭时就不需要重新设置高度 */
+        .card .content-wrapper {
+        height:0;
+        overflow:hidden;
+        }
+
+        .card .content-wrapper .content {
+        padding: 0 1.2rem;
+        background:#fff;
+        overflow:auto;
+        
+        }
+
+        .card p {
+        font-size:1.2rem;
+        line-height:1.5rem;
+        margin: 1rem;
+        }
+
+        .card.active {
+        transform: translateY(var(--data-offset-top)) scale(calc(var(--card-stack-width-number)/var(--card-width-number)));
+        transform-orgin: 50% 0;
+        }
+
+        .card.active h4 {
+        
+        }
+
+        .card.active img {
+        border-top-left-radius: 0;
+        border-top-right-radius: 0;
+        height: var(--img-height-expanded);
+        }
+
+        .card.active .content-wrapper {
+        height:100vh;
+        }
+    </style>
+
+</head>
+
+<body>
+
+        <%= yield %>
+
+</body>
+
+</html>

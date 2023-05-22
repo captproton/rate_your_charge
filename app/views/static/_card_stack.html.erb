@@ -1,0 +1,50 @@
+<div class="card-stack">
+  
+    <% @benefits.each do |b| %>
+        <div class="card">
+            <!-- <img src="https://cdn.pixabay.com/photo/2020/04/25/18/45/robinia-5092118_1280.jpg" alt=""> -->
+            <%= image_tag b.product_image %>
+            <h4><%= b.title %></h4>
+            <div class="content-wrapper">
+            <div class="content">
+
+                <p>&nbsp;</p>
+                <p><%= b.body %></p>
+            </div>
+            </div>
+        </div>
+    <% end %>
+</div>
+
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.5.1/jquery.min.js'></script>
+<script id="rendered-js" >
+    $(".card").click((e)=>{
+    const card = e.currentTarget;
+    
+    const cardOffsetTop = $(card).offset().top - $(window).scrollTop();
+    console.log(cardOffsetTop);
+    $(card).css("--data-offset-top", cardOffsetTop* -1 + "px");
+    
+    $(card).toggleClass("active");
+    
+    // translate 带来的高度变化重新计算比例
+    //  This phrase can be translated as "Recalculate the ratio due to the significant change brought about."
+    let cardStackWidthNumber= 480;
+    let cardWidthNumber     = 420;
+    let ratio = cardStackWidthNumber/cardWidthNumber;
+    
+    let height = $(window).height();
+    height -= $(card).find("h4").outerHeight() * ratio;
+    height -= $(card).find("img").outerHeight() ;
+    height /= ratio;
+    $(card).find(".content").css("height",height);
+    
+    
+    
+    if($(".card").hasClass("active")) {
+        $(".card-stack").addClass("noscroll");
+    } else {
+        $(".card-stack").removeClass("noscroll");
+    }
+    })
+</script>

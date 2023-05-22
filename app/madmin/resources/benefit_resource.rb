@@ -3,6 +3,7 @@ class BenefitResource < Madmin::Resource
   # attribute :id, form: false
   attribute :title
   attribute :subtitle
+  attribute :keyword
   # attribute :created_at, form: false
   attribute :updated_at, form: false
   attribute :body
