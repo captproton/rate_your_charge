@@ -34,4 +34,5 @@ document.addEventListener("click", e => {
       if (dropdown === currentDropdown) return
       dropdown.classList.remove("active")
     })
-  })
+  })import "trix"
+import "@rails/actiontext"

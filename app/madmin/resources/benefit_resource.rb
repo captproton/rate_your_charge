@@ -4,9 +4,11 @@ class BenefitResource < Madmin::Resource
   attribute :title
   attribute :subtitle
   attribute :keyword
+  attribute :value_prop
   # attribute :created_at, form: false
   attribute :updated_at, form: false
   attribute :body
+  # attribute :description
   attribute :publication_status
 
   # Associations
